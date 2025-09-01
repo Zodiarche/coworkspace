@@ -1,0 +1,35 @@
+.member-card {
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 12px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  max-width: 300px;
+  background: #fff;
+}
+
+.member-photo {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.member-info {
+  h3 {
+    margin: 0;
+    font-size: 1rem;
+  }
+
+  p {
+    margin: 2px 0;
+    font-size: 0.85rem;
+    color: #555;
+  }
+
+  .location {
+    font-size: 0.8rem;
+    color: #777;
+  }
+}
