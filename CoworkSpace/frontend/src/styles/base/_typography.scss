@@ -1,0 +1,36 @@
+@use "../abstracts/variables" as *;
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-weight: bold;
+  color: $gray-700;
+  margin: $space-4 0 $space-3;
+}
+
+h1 {
+  font-size: 2rem;
+}
+h2 {
+  font-size: 1.5rem;
+}
+h3 {
+  font-size: 1.25rem;
+}
+
+p {
+  margin-bottom: $space-3;
+  line-height: 1.5;
+}
+
+a {
+  color: $primary;
+  text-decoration: none;
+
+  &:hover {
+    text-decoration: underline;
+  }
+}

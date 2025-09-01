@@ -1,0 +1,13 @@
+// Exemple : @include phone { ... } ou @include desktop { ... }
+
+@mixin phone {
+  @media (max-width: 767px) {
+    @content;
+  }
+}
+
+@mixin desktop {
+  @media (min-width: 768px) {
+    @content;
+  }
+}
