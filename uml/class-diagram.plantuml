@@ -1,0 +1,234 @@
+@startuml CoworkSpace
+
+skinparam packageStyle rectangle
+skinparam linetype ortho
+
+package "Domain" {
+  enum Gender {
+    male
+    female
+  }
+
+  enum MembershipType {
+    Basic
+    Premium
+    Enterprise
+  }
+
+  class Member {
+    +id: string
+    +gender: Gender
+    +firstname: string
+    +lastname: string
+    +email: string
+    +password: string
+    +phone: string
+    +birthdate: Date
+    +city: string
+    +country: string
+    +photo: string
+    +profession: string
+    +company: string
+    +skills: string[]
+    +membershipType: MembershipType
+    +joinDate: Date
+    +bio: string
+    +linkedinUrl: string
+    +isManager: boolean
+  }
+
+  interface MemberRepository {
+    +findAll(): Member[]
+    +findByEmail(email: string): Member
+    +findById(id: string): Member
+    +findRandom(excludeId: string): Member
+    +search(filter: FilterCriteria): Page
+    +create(data: CreateMemberDTO): Member
+    +update(id: string, data: UpdateMemberDTO): Member
+    +delete(id: string): void
+  }
+
+  interface PasswordHasher {
+    +hash(plain: string): string
+    +compare(plain: string, hash: string): boolean
+  }
+
+  interface TokenProvider {
+    +sign(payload: AuthPayload, expiresIn: number): string
+    +verify(token: string): AuthPayload
+  }
+
+  class AuthPayload {
+    +sub: string
+    +email: string
+    +isManager: boolean
+  }
+
+  class PageRequest {
+    +page: number
+    +size: number
+  }
+
+  class Page {
+    +items: Object[]
+    +total: number
+  }
+
+  class FilterCriteria {
+    +name: string
+    +profession: string
+    +membershipType: MembershipType
+  }
+
+  class MemberService {
+    +getRandomMember(currentUserId: string): Member
+    +listMembers(filter: FilterCriteria, page: PageRequest): Page
+    +updateOwnProfile(id: string, data: UpdateMemberDTO): Member
+    +createMember(data: CreateMemberDTO): Member
+    +updateMember(id: string, data: UpdateMemberDTO): Member
+    +deleteMember(id: string): void
+    +assignManagerRole(id: string): Member
+  }
+
+  class AuthService {
+    +login(email: string, password: string): AuthResult
+    +verifyToken(token: string): AuthPayload
+  }
+
+  class AuthResult {
+    +token: string
+    +member: Member
+  }
+}
+
+package "Application" {
+  class LoginRequestDTO {
+    +email: string
+    +password: string
+  }
+
+  class MemberDTO {
+    +id: string
+    +firstname: string
+    +lastname: string
+    +email: string
+    +photo: string
+    +profession: string
+    +company: string
+    +skills: string[]
+    +membershipType: MembershipType
+    +isManager: boolean
+  }
+
+  class CreateMemberDTO {
+    +gender: Gender
+    +firstname: string
+    +lastname: string
+    +email: string
+    +password: string
+    +profession: string
+    +membershipType: MembershipType
+    +isManager: boolean
+  }
+
+  class UpdateMemberDTO {
+    +firstname: string
+    +lastname: string
+    +email: string
+    +password: string
+    +phone: string
+    +city: string
+    +country: string
+    +photo: string
+    +profession: string
+    +company: string
+    +skills: string[]
+    +membershipType: MembershipType
+    +bio: string
+    +linkedinUrl: string
+  }
+
+  class LoginUseCase {
+    +execute(req: LoginRequestDTO): AuthResult
+  }
+  class GetRandomMemberUseCase {
+    +execute(): MemberDTO
+  }
+
+  class ListMembersUseCase {
+    +execute(filter: FilterCriteria, page: PageRequest): Page
+  }
+
+  class UpdateMemberProfileUseCase {
+    +execute(id: string, data: UpdateMemberDTO): MemberDTO
+  }
+
+  class CreateMemberUseCase {
+    +execute(data: CreateMemberDTO): MemberDTO
+  }
+
+  class UpdateMemberUseCase {
+    +execute(id: string, data: UpdateMemberDTO): MemberDTO
+  }
+
+  class DeleteMemberUseCase {
+    +execute(id: string): void
+  }
+}
+
+package "Infrastructure" {
+  class MemberRepositoryMongo
+  class MemberRepositorySQL
+  class BcryptPasswordHasher
+  class JwtTokenProvider
+  class DatabaseContext
+}
+
+package "Presentation" {
+  class AuthController
+  class MemberController
+  class AdminController
+  class AuthMiddleware
+  class RoleMiddleware
+  class Routes
+}
+
+' --- Dépendances entre couches ---
+MemberService --> MemberRepository
+MemberService --> PasswordHasher
+AuthService --> MemberRepository
+AuthService --> PasswordHasher
+AuthService --> TokenProvider
+
+LoginUseCase --> AuthService
+GetRandomMemberUseCase --> MemberService
+ListMembersUseCase --> MemberService
+UpdateMemberProfileUseCase --> MemberService
+CreateMemberUseCase --> MemberService
+UpdateMemberUseCase --> MemberService
+DeleteMemberUseCase --> MemberService
+AssignManagerRoleUseCase --> MemberService
+
+AuthController --> LoginUseCase
+MemberController --> GetRandomMemberUseCase
+MemberController --> ListMembersUseCase
+MemberController --> UpdateMemberProfileUseCase
+AdminController --> CreateMemberUseCase
+AdminController --> UpdateMemberUseCase
+AdminController --> DeleteMemberUseCase
+AdminController --> AssignManagerRoleUseCase
+Routes --> AuthController
+Routes --> MemberController
+Routes --> AdminController
+
+AuthMiddleware --> TokenProvider
+RoleMiddleware --> TokenProvider
+
+MemberRepositoryMongo ..|> MemberRepository
+MemberRepositorySQL ..|> MemberRepository
+BcryptPasswordHasher ..|> PasswordHasher
+JwtTokenProvider ..|> TokenProvider
+
+DatabaseContext --> MemberRepositoryMongo
+DatabaseContext --> MemberRepositorySQL
+@enduml
