@@ -1,0 +1,73 @@
+@startuml Sequence - Update Profile (CoworkSpace)
+
+title Modification de profil – Flux principal (TypeScript, layered)
+
+actor "Utilisateur" as User
+participant "Frontend\n(ProfileView)" as FE
+participant "API\n(MemberController)" as Ctrl
+participant "AuthMiddleware\n(TokenProvider.verify)" as Auth
+participant "UpdateMemberProfileUseCase" as UC
+participant "MemberService" as Svc
+participant "MemberRepository" as Repo
+participant "PasswordHasher\n(bcrypt)" as Hash
+database "DB" as DB
+
+== Déclenchement ==
+User -> FE : Modifier champs profil\n(pseudo, email, téléphone, etc.)
+FE -> FE : Validation locale (types, formats)
+FE -> Ctrl : PUT /api/members/me\nAuthorization: Bearer <JWT>\nBody: UpdateMemberDTO
+
+== Authentification ==
+Ctrl -> Auth : verify(token)
+Auth --> Ctrl : userId (payload OK)
+
+alt Token invalide
+  Auth --> Ctrl : erreur 401
+  Ctrl --> FE : 401 Unauthorized (message)
+  FE --> User : Afficher message d’erreur
+  return
+end
+
+== Cas d'utilisation ==
+Ctrl -> UC : execute(userId, dto)
+UC -> Svc : updateOwnProfile(userId, dto)
+
+== Logique métier ==
+Svc -> Repo : findById(userId)
+Repo --> Svc : Member actuel
+
+alt Email changé ?
+  Svc -> Repo : findByEmail(dto.email)
+  Repo --> Svc : Member? (existant ou null)
+  alt Email déjà utilisé
+    Svc --> UC : DomainError(EMAIL_TAKEN)
+    UC --> Ctrl : 409 Conflict
+    Ctrl --> FE : 409 Conflict (email déjà utilisé)
+    FE --> User : Afficher message d’erreur
+    return
+  end
+end
+
+opt Mot de passe fourni
+  Svc -> Hash : hash(dto.password)
+  Hash --> Svc : passwordHash
+end
+
+Svc -> Repo : update(userId, mergedData)
+Repo -> DB : UPDATE members SET ...
+DB --> Repo : OK
+Repo --> Svc : Member mis à jour
+
+Svc --> UC : Member
+UC --> Ctrl : MemberDTO
+Ctrl --> FE : 200 OK + MemberDTO
+FE --> User : Mettre à jour l’UI (profil sauvegardé ✅)
+
+== Alternatives d'erreur génériques ==
+alt Données invalides (validation serveur)
+  UC --> Ctrl : 400 Bad Request (détail champs)
+  Ctrl --> FE : 400 + liste d'erreurs
+  FE --> User : Afficher erreurs de formulaire
+end
+
+@enduml

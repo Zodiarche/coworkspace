@@ -1,0 +1,78 @@
+@startuml CoworkSpace - Auth Sequence
+
+title Authentification (Email/Mot de passe)
+
+actor User as "Frontend (TS/React)"
+participant "API Route /auth/login" as Route
+participant AuthController
+participant LoginUseCase
+participant AuthService
+participant MemberRepository as Repo
+participant PasswordHasher as "PasswordHasher (bcrypt)"
+participant TokenProvider as "TokenProvider (JWT)"
+
+== Soumission du formulaire ==
+User -> Route : POST /auth/login { email, password }
+activate Route
+Route -> AuthController : handleLogin(req)
+activate AuthController
+
+AuthController -> LoginUseCase : execute(LoginRequestDTO)
+activate LoginUseCase
+
+LoginUseCase -> AuthService : login(email, password)
+activate AuthService
+
+== Vérification des identifiants ==
+AuthService -> Repo : findByEmail(email)
+activate Repo
+Repo --> AuthService : Member | null
+deactivate Repo
+
+AuthService -> PasswordHasher : compare(plain, member.passwordHash)
+activate PasswordHasher
+PasswordHasher --> AuthService : boolean
+deactivate PasswordHasher
+
+alt Identifiants valides
+  AuthService -> TokenProvider : sign({sub, email, isManager}, expiresIn)
+  activate TokenProvider
+  TokenProvider --> AuthService : jwtToken
+  deactivate TokenProvider
+
+  AuthService --> LoginUseCase : AuthResult { token, member }
+  deactivate AuthService
+
+  LoginUseCase --> AuthController : 200 OK + { token, memberDTO }
+  deactivate LoginUseCase
+
+  AuthController --> Route : Response JSON
+  deactivate AuthController
+
+  Route --> User : 200 OK { token, memberDTO }
+  deactivate Route
+
+  note right of User
+    Le frontend stocke le JWT (ex: HttpOnly cookie)
+    puis redirige vers le Dashboard.
+  end note
+else Email inconnu ou mot de passe invalide
+  AuthService --> LoginUseCase : throw AuthError(401)
+  deactivate AuthService
+
+  LoginUseCase --> AuthController : erreur 401
+  deactivate LoginUseCase
+
+  AuthController --> Route : HTTP 401 { message }
+  deactivate AuthController
+
+  Route --> User : 401 Unauthorized
+  deactivate Route
+
+  note right of User
+    Affichage d’un message d’erreur
+    et rester sur l’écran de login.
+  end note
+end
+
+@enduml

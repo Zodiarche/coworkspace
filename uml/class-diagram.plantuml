@@ -1,5 +1,6 @@
 @startuml CoworkSpace
 
+title Diagramme de classes - CoworkSpace
 skinparam packageStyle rectangle
 skinparam linetype ortho
 
