@@ -5,7 +5,7 @@
     "firstname": "Sarah",
     "lastname": "Martin",
     "email": "sarah.martin@example.com",
-    "password": "$2b$10$IExQBXEZVifvfEOWvWsmO.4.OocNb7zQzurQerwOQh1tZx/3okSp.",
+    "password": "fake",
     "phone": "06-12-34-56-78",
     "birthdate": "1990-05-15",
     "city": "Paris",
@@ -13,7 +13,11 @@
     "photo": "https://randomuser.me/api/portraits/women/1.jpg",
     "profession": "Développeuse Web",
     "company": "Freelance",
-    "skills": ["JavaScript", "React", "Node.js"],
+    "skills": [
+      "JavaScript",
+      "React",
+      "Node.js"
+    ],
     "membershipType": "Premium",
     "joinDate": "2023-01-15",
     "bio": "Développeuse full-stack passionnée par les nouvelles technologies et l'innovation.",
@@ -34,7 +38,11 @@
     "photo": "https://randomuser.me/api/portraits/men/1.jpg",
     "profession": "Designer UX/UI",
     "company": "Creative Studio",
-    "skills": ["Figma", "Adobe Creative Suite", "Prototypage"],
+    "skills": [
+      "Figma",
+      "Adobe Creative Suite",
+      "Prototypage"
+    ],
     "membershipType": "Enterprise",
     "joinDate": "2023-02-01",
     "bio": "Designer expérimenté spécialisé dans l'expérience utilisateur et l'interface.",
@@ -55,7 +63,11 @@
     "photo": "https://randomuser.me/api/portraits/women/2.jpg",
     "profession": "Marketing Digital",
     "company": "Digital Agency Pro",
-    "skills": ["SEO", "Google Ads", "Social Media"],
+    "skills": [
+      "SEO",
+      "Google Ads",
+      "Social Media"
+    ],
     "membershipType": "Basic",
     "joinDate": "2023-03-10",
     "bio": "Experte en marketing digital avec 5 ans d'expérience dans l'acquisition client.",
@@ -76,7 +88,11 @@
     "photo": "https://randomuser.me/api/portraits/men/2.jpg",
     "profession": "Data Scientist",
     "company": "AI Solutions",
-    "skills": ["Python", "Machine Learning", "TensorFlow"],
+    "skills": [
+      "Python",
+      "Machine Learning",
+      "TensorFlow"
+    ],
     "membershipType": "Premium",
     "joinDate": "2023-01-20",
     "bio": "Data scientist passionné par l'intelligence artificielle et l'analyse prédictive.",
@@ -97,7 +113,11 @@
     "photo": "https://randomuser.me/api/portraits/women/3.jpg",
     "profession": "Consultante RH",
     "company": "HR Consulting",
-    "skills": ["Recrutement", "Formation", "Coaching"],
+    "skills": [
+      "Recrutement",
+      "Formation",
+      "Coaching"
+    ],
     "membershipType": "Basic",
     "joinDate": "2023-04-05",
     "bio": "Consultante RH spécialisée dans l'accompagnement des startups et PME.",
@@ -118,7 +138,11 @@
     "photo": "https://randomuser.me/api/portraits/men/3.jpg",
     "profession": "Architecte",
     "company": "Freelance",
-    "skills": ["AutoCAD", "3D Modeling", "Design durable"],
+    "skills": [
+      "AutoCAD",
+      "3D Modeling",
+      "Design durable"
+    ],
     "membershipType": "Enterprise",
     "joinDate": "2023-02-15",
     "bio": "Architecte indépendant spécialisé dans l'architecture durable et éco-responsable.",
@@ -139,7 +163,11 @@
     "photo": "https://randomuser.me/api/portraits/women/4.jpg",
     "profession": "Journaliste",
     "company": "Media Digital",
-    "skills": ["Rédaction", "Investigation", "Réseaux sociaux"],
+    "skills": [
+      "Rédaction",
+      "Investigation",
+      "Réseaux sociaux"
+    ],
     "membershipType": "Basic",
     "joinDate": "2023-05-01",
     "bio": "Journaliste spécialisée dans les nouvelles technologies et l'innovation.",
@@ -160,7 +188,11 @@
     "photo": "https://randomuser.me/api/portraits/men/4.jpg",
     "profession": "DevOps Engineer",
     "company": "TechCorp",
-    "skills": ["Docker", "Kubernetes", "AWS"],
+    "skills": [
+      "Docker",
+      "Kubernetes",
+      "AWS"
+    ],
     "membershipType": "Premium",
     "joinDate": "2023-01-30",
     "bio": "Ingénieur DevOps passionné par l'automatisation et le cloud computing.",
@@ -181,7 +213,11 @@
     "photo": "https://randomuser.me/api/portraits/women/5.jpg",
     "profession": "Product Manager",
     "company": "Startup Innovation",
-    "skills": ["Product Strategy", "Agile", "Analytics"],
+    "skills": [
+      "Product Strategy",
+      "Agile",
+      "Analytics"
+    ],
     "membershipType": "Enterprise",
     "joinDate": "2023-03-20",
     "bio": "Product Manager expérimentée dans le développement de produits digitaux.",
@@ -202,7 +238,11 @@
     "photo": "https://randomuser.me/api/portraits/men/5.jpg",
     "profession": "Photographe",
     "company": "Freelance",
-    "skills": ["Photographie", "Retouche", "Drone"],
+    "skills": [
+      "Photographie",
+      "Retouche",
+      "Drone"
+    ],
     "membershipType": "Basic",
     "joinDate": "2023-04-12",
     "bio": "Photographe professionnel spécialisé dans l'événementiel et le corporate.",
@@ -223,7 +263,11 @@
     "photo": "https://randomuser.me/api/portraits/women/6.jpg",
     "profession": "Avocate",
     "company": "Cabinet Juridique",
-    "skills": ["Droit des affaires", "Propriété intellectuelle", "Contrats"],
+    "skills": [
+      "Droit des affaires",
+      "Propriété intellectuelle",
+      "Contrats"
+    ],
     "membershipType": "Premium",
     "joinDate": "2023-02-28",
     "bio": "Avocate spécialisée dans l'accompagnement juridique des startups et entrepreneurs.",
@@ -244,7 +288,11 @@
     "photo": "https://randomuser.me/api/portraits/men/6.jpg",
     "profession": "Game Developer",
     "company": "Indie Game Studio",
-    "skills": ["Unity", "C#", "Game Design"],
+    "skills": [
+      "Unity",
+      "C#",
+      "Game Design"
+    ],
     "membershipType": "Basic",
     "joinDate": "2023-03-25",
     "bio": "Développeur de jeux vidéo indépendant passionné par la création d'expériences immersives.",
@@ -265,7 +313,11 @@
     "photo": "https://randomuser.me/api/portraits/women/7.jpg",
     "profession": "Traductrice",
     "company": "Freelance",
-    "skills": ["Anglais", "Espagnol", "Localisation"],
+    "skills": [
+      "Anglais",
+      "Espagnol",
+      "Localisation"
+    ],
     "membershipType": "Basic",
     "joinDate": "2023-04-18",
     "bio": "Traductrice spécialisée dans la localisation de contenus digitaux et marketing.",
@@ -286,7 +338,11 @@
     "photo": "https://randomuser.me/api/portraits/men/7.jpg",
     "profession": "Comptable",
     "company": "Expertise Comptable",
-    "skills": ["Comptabilité", "Fiscalité", "Gestion"],
+    "skills": [
+      "Comptabilité",
+      "Fiscalité",
+      "Gestion"
+    ],
     "membershipType": "Premium",
     "joinDate": "2023-01-08",
     "bio": "Expert-comptable accompagnant les entrepreneurs dans leur développement financier.",
@@ -307,7 +363,11 @@
     "photo": "https://randomuser.me/api/portraits/women/8.jpg",
     "profession": "Psychologue",
     "company": "Cabinet Privé",
-    "skills": ["Thérapie", "Coaching", "Développement personnel"],
+    "skills": [
+      "Thérapie",
+      "Coaching",
+      "Développement personnel"
+    ],
     "membershipType": "Basic",
     "joinDate": "2023-05-10",
     "bio": "Psychologue spécialisée dans l'accompagnement des entrepreneurs et burn-out.",
@@ -328,7 +388,11 @@
     "photo": "https://randomuser.me/api/portraits/men/8.jpg",
     "profession": "Chef de projet",
     "company": "Agence Web",
-    "skills": ["Gestion de projet", "Scrum", "Communication"],
+    "skills": [
+      "Gestion de projet",
+      "Scrum",
+      "Communication"
+    ],
     "membershipType": "Enterprise",
     "joinDate": "2023-02-05",
     "bio": "Chef de projet expérimenté dans la gestion d'équipes et de projets digitaux.",
@@ -349,7 +413,11 @@
     "photo": "https://randomuser.me/api/portraits/women/9.jpg",
     "profession": "Nutritionniste",
     "company": "Cabinet Santé",
-    "skills": ["Nutrition", "Bien-être", "Coaching santé"],
+    "skills": [
+      "Nutrition",
+      "Bien-être",
+      "Coaching santé"
+    ],
     "membershipType": "Basic",
     "joinDate": "2023-04-22",
     "bio": "Nutritionniste spécialisée dans l'accompagnement nutritionnel des actifs.",
@@ -370,7 +438,11 @@
     "photo": "https://randomuser.me/api/portraits/men/9.jpg",
     "profession": "Ingénieur Logiciel",
     "company": "TechStart",
-    "skills": ["Java", "Spring", "Microservices"],
+    "skills": [
+      "Java",
+      "Spring",
+      "Microservices"
+    ],
     "membershipType": "Premium",
     "joinDate": "2023-01-12",
     "bio": "Ingénieur logiciel senior spécialisé dans les architectures distribuées.",
@@ -391,7 +463,11 @@
     "photo": "https://randomuser.me/api/portraits/women/10.jpg",
     "profession": "Community Manager",
     "company": "Social Media Agency",
-    "skills": ["Social Media", "Content Creation", "Influence"],
+    "skills": [
+      "Social Media",
+      "Content Creation",
+      "Influence"
+    ],
     "membershipType": "Basic",
     "joinDate": "2023-05-05",
     "bio": "Community manager créative spécialisée dans les stratégies social media B2B.",
@@ -412,7 +488,11 @@
     "photo": "https://randomuser.me/api/portraits/men/10.jpg",
     "profession": "Consultant IT",
     "company": "IT Consulting",
-    "skills": ["Transformation digitale", "Stratégie IT", "Change management"],
+    "skills": [
+      "Transformation digitale",
+      "Stratégie IT",
+      "Change management"
+    ],
     "membershipType": "Enterprise",
     "joinDate": "2023-01-25",
     "bio": "Consultant IT accompagnant les entreprises dans leur transformation digitale.",
@@ -433,7 +513,11 @@
     "photo": "https://randomuser.me/api/portraits/women/11.jpg",
     "profession": "Graphiste",
     "company": "Studio Créatif",
-    "skills": ["Illustrator", "Photoshop", "Branding"],
+    "skills": [
+      "Illustrator",
+      "Photoshop",
+      "Branding"
+    ],
     "membershipType": "Premium",
     "joinDate": "2023-03-08",
     "bio": "Graphiste passionnée par l'identité visuelle et le design d'impact.",
@@ -454,7 +538,11 @@
     "photo": "https://randomuser.me/api/portraits/men/11.jpg",
     "profession": "Formateur",
     "company": "Organisme de Formation",
-    "skills": ["Pédagogie", "E-learning", "Management"],
+    "skills": [
+      "Pédagogie",
+      "E-learning",
+      "Management"
+    ],
     "membershipType": "Basic",
     "joinDate": "2023-04-15",
     "bio": "Formateur spécialisé dans le développement des compétences professionnelles.",
@@ -475,7 +563,11 @@
     "photo": "https://randomuser.me/api/portraits/women/12.jpg",
     "profession": "Rédactrice Web",
     "company": "Freelance",
-    "skills": ["Rédaction", "SEO", "Content Marketing"],
+    "skills": [
+      "Rédaction",
+      "SEO",
+      "Content Marketing"
+    ],
     "membershipType": "Basic",
     "joinDate": "2023-05-18",
     "bio": "Rédactrice web spécialisée dans la création de contenus optimisés SEO.",
@@ -496,7 +588,11 @@
     "photo": "https://randomuser.me/api/portraits/men/12.jpg",
     "profession": "Cybersécurité",
     "company": "SecureTech",
-    "skills": ["Pentesting", "Sécurité réseau", "Audit"],
+    "skills": [
+      "Pentesting",
+      "Sécurité réseau",
+      "Audit"
+    ],
     "membershipType": "Enterprise",
     "joinDate": "2023-02-12",
     "bio": "Expert en cybersécurité accompagnant les entreprises dans leur sécurisation.",
@@ -517,7 +613,11 @@
     "photo": "https://randomuser.me/api/portraits/women/13.jpg",
     "profession": "Business Analyst",
     "company": "Consulting Firm",
-    "skills": ["Analyse métier", "Process", "Cahier des charges"],
+    "skills": [
+      "Analyse métier",
+      "Process",
+      "Cahier des charges"
+    ],
     "membershipType": "Premium",
     "joinDate": "2023-03-15",
     "bio": "Business analyst experte en optimisation des processus métier.",
@@ -538,7 +638,11 @@
     "photo": "https://randomuser.me/api/portraits/men/13.jpg",
     "profession": "Vidéaste",
     "company": "Production Vidéo",
-    "skills": ["Montage", "Motion Design", "Storytelling"],
+    "skills": [
+      "Montage",
+      "Motion Design",
+      "Storytelling"
+    ],
     "membershipType": "Basic",
     "joinDate": "2023-04-08",
     "bio": "Vidéaste créatif spécialisé dans la production de contenus corporate.",
@@ -559,7 +663,11 @@
     "photo": "https://randomuser.me/api/portraits/women/14.jpg",
     "profession": "Event Manager",
     "company": "Event Agency",
-    "skills": ["Organisation événementielle", "Logistique", "Communication"],
+    "skills": [
+      "Organisation événementielle",
+      "Logistique",
+      "Communication"
+    ],
     "membershipType": "Premium",
     "joinDate": "2023-02-20",
     "bio": "Event manager créative organisant des événements corporate et networking.",
@@ -580,7 +688,11 @@
     "photo": "https://randomuser.me/api/portraits/men/14.jpg",
     "profession": "Sales Manager",
     "company": "SaaS Company",
-    "skills": ["Vente", "Négociation", "CRM"],
+    "skills": [
+      "Vente",
+      "Négociation",
+      "CRM"
+    ],
     "membershipType": "Enterprise",
     "joinDate": "2023-01-18",
     "bio": "Sales manager expérimenté dans la vente de solutions SaaS B2B.",
@@ -601,7 +713,11 @@
     "photo": "https://randomuser.me/api/portraits/women/15.jpg",
     "profession": "UX Researcher",
     "company": "Design Studio",
-    "skills": ["User Research", "Tests utilisateurs", "Persona"],
+    "skills": [
+      "User Research",
+      "Tests utilisateurs",
+      "Persona"
+    ],
     "membershipType": "Premium",
     "joinDate": "2023-03-05",
     "bio": "UX researcher passionnée par la compréhension des comportements utilisateurs.",
@@ -622,7 +738,11 @@
     "photo": "https://randomuser.me/api/portraits/men/15.jpg",
     "profession": "Blockchain Developer",
     "company": "Crypto Startup",
-    "skills": ["Solidity", "Web3", "Smart Contracts"],
+    "skills": [
+      "Solidity",
+      "Web3",
+      "Smart Contracts"
+    ],
     "membershipType": "Enterprise",
     "joinDate": "2023-02-08",
     "bio": "Développeur blockchain spécialisé dans les applications décentralisées.",
@@ -643,7 +763,11 @@
     "photo": "https://randomuser.me/api/portraits/women/16.jpg",
     "profession": "Ergothérapeute",
     "company": "Cabinet Santé",
-    "skills": ["Ergonomie", "Réadaptation", "Bien-être au travail"],
+    "skills": [
+      "Ergonomie",
+      "Réadaptation",
+      "Bien-être au travail"
+    ],
     "membershipType": "Basic",
     "joinDate": "2023-05-12",
     "bio": "Ergothérapeute spécialisée dans l'amélioration des conditions de travail.",
@@ -664,7 +788,11 @@
     "photo": "https://randomuser.me/api/portraits/men/16.jpg",
     "profession": "Growth Hacker",
     "company": "Startup Scale",
-    "skills": ["Growth", "Analytics", "A/B Testing"],
+    "skills": [
+      "Growth",
+      "Analytics",
+      "A/B Testing"
+    ],
     "membershipType": "Premium",
     "joinDate": "2023-01-22",
     "bio": "Growth hacker expert en acquisition et rétention d'utilisateurs.",
@@ -685,7 +813,11 @@
     "photo": "https://randomuser.me/api/portraits/women/17.jpg",
     "profession": "Coach Professionnel",
     "company": "Freelance",
-    "skills": ["Coaching", "Leadership", "Développement personnel"],
+    "skills": [
+      "Coaching",
+      "Leadership",
+      "Développement personnel"
+    ],
     "membershipType": "Basic",
     "joinDate": "2023-04-28",
     "bio": "Coach professionnelle accompagnant les dirigeants dans leur développement.",
@@ -706,7 +838,11 @@
     "photo": "https://randomuser.me/api/portraits/men/17.jpg",
     "profession": "Expert SEO",
     "company": "Digital Agency",
-    "skills": ["SEO", "SEA", "Analytics"],
+    "skills": [
+      "SEO",
+      "SEA",
+      "Analytics"
+    ],
     "membershipType": "Enterprise",
     "joinDate": "2023-02-25",
     "bio": "Expert SEO accompagnant les entreprises dans leur visibilité en ligne.",
@@ -727,7 +863,11 @@
     "photo": "https://randomuser.me/api/portraits/women/18.jpg",
     "profession": "Responsable QSE",
     "company": "Industrie Tech",
-    "skills": ["Qualité", "Sécurité", "Environnement"],
+    "skills": [
+      "Qualité",
+      "Sécurité",
+      "Environnement"
+    ],
     "membershipType": "Premium",
     "joinDate": "2023-03-18",
     "bio": "Responsable QSE experte en management des risques et amélioration continue.",
@@ -748,7 +888,11 @@
     "photo": "https://randomuser.me/api/portraits/men/18.jpg",
     "profession": "Motion Designer",
     "company": "Studio Animation",
-    "skills": ["After Effects", "Cinema 4D", "Animation"],
+    "skills": [
+      "After Effects",
+      "Cinema 4D",
+      "Animation"
+    ],
     "membershipType": "Basic",
     "joinDate": "2023-05-08",
     "bio": "Motion designer créatif spécialisé dans l'animation et les effets visuels.",
@@ -769,7 +913,11 @@
     "photo": "https://randomuser.me/api/portraits/women/19.jpg",
     "profession": "Responsable Communication",
     "company": "Association",
-    "skills": ["Communication", "Relations presse", "Événementiel"],
+    "skills": [
+      "Communication",
+      "Relations presse",
+      "Événementiel"
+    ],
     "membershipType": "Basic",
     "joinDate": "2023-04-20",
     "bio": "Responsable communication passionnée par l'impact social et l'engagement.",
@@ -790,7 +938,11 @@
     "photo": "https://randomuser.me/api/portraits/men/19.jpg",
     "profession": "Ingénieur IoT",
     "company": "Connected Solutions",
-    "skills": ["IoT", "Arduino", "Capteurs"],
+    "skills": [
+      "IoT",
+      "Arduino",
+      "Capteurs"
+    ],
     "membershipType": "Enterprise",
     "joinDate": "2023-01-05",
     "bio": "Ingénieur IoT développant des solutions connectées innovantes.",
@@ -811,7 +963,11 @@
     "photo": "https://randomuser.me/api/portraits/women/20.jpg",
     "profession": "Data Analyst",
     "company": "Analytics Pro",
-    "skills": ["SQL", "Power BI", "Statistiques"],
+    "skills": [
+      "SQL",
+      "Power BI",
+      "Statistiques"
+    ],
     "membershipType": "Premium",
     "joinDate": "2023-03-12",
     "bio": "Data analyst experte en analyse de données et business intelligence.",
@@ -832,7 +988,11 @@
     "photo": "https://randomuser.me/api/portraits/men/20.jpg",
     "profession": "Mobile Developer",
     "company": "App Factory",
-    "skills": ["React Native", "Flutter", "iOS/Android"],
+    "skills": [
+      "React Native",
+      "Flutter",
+      "iOS/Android"
+    ],
     "membershipType": "Premium",
     "joinDate": "2023-02-18",
     "bio": "Développeur mobile spécialisé dans les applications cross-platform.",
@@ -853,7 +1013,11 @@
     "photo": "https://randomuser.me/api/portraits/women/21.jpg",
     "profession": "Contrôleur de Gestion",
     "company": "Finance Corp",
-    "skills": ["Contrôle de gestion", "Budget", "Reporting"],
+    "skills": [
+      "Contrôle de gestion",
+      "Budget",
+      "Reporting"
+    ],
     "membershipType": "Basic",
     "joinDate": "2023-04-25",
     "bio": "Contrôleur de gestion experte en pilotage financier et optimisation des coûts.",
@@ -874,7 +1038,11 @@
     "photo": "https://randomuser.me/api/portraits/men/21.jpg",
     "profession": "Scrum Master",
     "company": "Agile Team",
-    "skills": ["Scrum", "Facilitation", "Coaching agile"],
+    "skills": [
+      "Scrum",
+      "Facilitation",
+      "Coaching agile"
+    ],
     "membershipType": "Enterprise",
     "joinDate": "2023-01-28",
     "bio": "Scrum Master certifié accompagnant les équipes dans leur transformation agile.",
@@ -895,7 +1063,11 @@
     "photo": "https://randomuser.me/api/portraits/women/22.jpg",
     "profession": "Brand Manager",
     "company": "Brand Agency",
-    "skills": ["Brand Strategy", "Marketing", "Communication"],
+    "skills": [
+      "Brand Strategy",
+      "Marketing",
+      "Communication"
+    ],
     "membershipType": "Premium",
     "joinDate": "2023-03-22",
     "bio": "Brand manager créative spécialisée dans le développement d'identités de marque.",
@@ -916,7 +1088,11 @@
     "photo": "https://randomuser.me/api/portraits/men/22.jpg",
     "profession": "Ingénieur Système",
     "company": "Infrastructure Pro",
-    "skills": ["Linux", "Virtualisation", "Monitoring"],
+    "skills": [
+      "Linux",
+      "Virtualisation",
+      "Monitoring"
+    ],
     "membershipType": "Enterprise",
     "joinDate": "2023-02-03",
     "bio": "Ingénieur système expert en infrastructure et haute disponibilité.",
@@ -937,7 +1113,11 @@
     "photo": "https://randomuser.me/api/portraits/men/23.jpg",
     "profession": "Community Manager",
     "company": "CoworkSpace",
-    "skills": ["Gestion communauté", "Événementiel", "Relation client"],
+    "skills": [
+      "Gestion communauté",
+      "Événementiel",
+      "Relation client"
+    ],
     "membershipType": "Enterprise",
     "joinDate": "2022-01-01",
     "bio": "Gestionnaire de l'espace de coworking, facilitateur de networking et d'innovation.",

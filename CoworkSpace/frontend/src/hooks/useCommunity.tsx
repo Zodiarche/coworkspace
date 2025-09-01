@@ -6,7 +6,6 @@ export default function useCommunity() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
-  // Exemple de filtre (par compétence)
   const [filter, setFilter] = useState<string>("");
 
   useEffect(() => {

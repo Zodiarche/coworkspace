@@ -1,11 +1,12 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import { SignIn } from "./views/SignIn";
+import { Login } from "./views/Login";
 import { Community } from "./views/Community";
 import { Dashboard } from "./views/Dashboard";
 import { Profile } from "./views/Profile";
 import { Events } from "./views/Events";
-import { Parameters } from "./views/Parameters";
+import { Settings } from "./views/Settings";
 import Header from "./components/header/Header";
+import RequireAuth from "./routes/RequireAuth";
 
 function App() {
   return (
@@ -13,16 +14,16 @@ function App() {
       <BrowserRouter>
         <Header />
         <Routes>
-          <Route path="/" element={<SignIn />} />
-          <Route path="/community" element={<Community />} />
-          <Route path="/dashboard" element={<Dashboard />} />
-          <Route path="/profile" element={<Profile />} />
-          <Route path="/events" element={<Events />} />
-          <Route path="/signin" element={<SignIn />} />
-          <Route path="/parameters" element={<Parameters />} />
+          <Route path="/login" element={<Login />} />
+          <Route element={<RequireAuth />}>
+            <Route path="/community" element={<Community />} />
+            <Route path="/dashboard" element={<Dashboard />} />
+            <Route path="/profile" element={<Profile />} />
+            <Route path="/events" element={<Events />} />
+            <Route path="/settings" element={<Settings />} />
+          </Route>
         </Routes>
       </BrowserRouter>
-      <h1>Workspace</h1>
     </>
   );
 }
