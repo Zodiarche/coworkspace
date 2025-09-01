@@ -1,0 +1,50 @@
+@startuml
+left to right direction
+skinparam actorStyle awesome
+skinparam packageStyle rectangle
+title Cas d'utilisation – Application CoworkSpace
+
+actor "Visiteur" as Visitor
+actor "Utilisateur" as User
+actor "Administrateur" as Admin
+Admin -|> User
+
+rectangle "Application" {
+
+  ' --- Utilisateur non connecté
+  usecase "Se connecter" as UC_Login
+
+  ' --- Utilisateur connecté
+  usecase "Accéder au dashboard" as UC_Dashboard
+  usecase "Découvrir un\nutilisateur aléatoire" as UC_Discover
+  usecase "Modifier mon profil" as UC_EditProfile
+  usecase "Voir la liste des membres\n(connectés ou non)" as UC_ListMembers
+  usecase "Voir le profil\nd'un utilisateur" as UC_ViewProfile
+  usecase "Rechercher un membre\n(nom, profession, type d'abonnement)" as UC_Search
+  usecase "Se déconnecter" as UC_Logout
+
+  ' --- Administrateur
+  package "CRUD utilisateurs" {
+    usecase "Créer un utilisateur" as UC_CreateUser
+    usecase "Voir un utilisateur" as UC_AdminView
+    usecase "Modifier un utilisateur" as UC_UpdateUser
+    usecase "Supprimer un utilisateur" as UC_DeleteUser
+  }
+}
+
+' --- Associations
+Visitor --> UC_Login
+
+User --> UC_Dashboard
+User --> UC_Discover
+User --> UC_EditProfile
+User --> UC_ListMembers
+User --> UC_ViewProfile
+User --> UC_Search
+User --> UC_Logout
+
+Admin --> UC_CreateUser
+Admin --> UC_AdminView
+Admin --> UC_UpdateUser
+Admin --> UC_DeleteUser
+@enduml
