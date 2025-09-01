@@ -1,0 +1,6 @@
+@use "sass:color";
+
+// Ratio alpha sur une couleur
+@function with-alpha($hex, $alpha) {
+  @return rgba($hex, $alpha);
+}

@@ -1,0 +1,90 @@
+@use "../abstracts/variables" as *;
+@use "../abstracts/mixins" as *;
+
+.navbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 64px;
+  padding: 0 $space-6;
+  background: #fff;
+  border-bottom: 1px solid $gray-200;
+}
+
+.navbar__logo {
+  display: flex;
+  align-items: center;
+  gap: $space-2;
+  font-weight: 700;
+  color: $primary;
+
+  img {
+    width: 28px;
+    height: 28px;
+  }
+}
+
+.navbar__menu {
+  display: none;
+  gap: $space-6;
+
+  @include desktop {
+    display: flex;
+  }
+
+  a {
+    color: $gray-700;
+    text-decoration: none;
+    font-size: 0.95rem;
+
+    &:hover {
+      color: $primary;
+    }
+
+    &.active {
+      color: $primary;
+      font-weight: 600;
+    }
+  }
+}
+
+.navbar__right {
+  display: flex;
+  align-items: center;
+  gap: $space-4;
+}
+
+.navbar__profile {
+  display: flex;
+  align-items: center;
+  gap: $space-2;
+  cursor: pointer;
+
+  img {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+  }
+
+  .navbar__info {
+    display: none;
+    flex-direction: column;
+    font-size: 0.8rem;
+    line-height: 1.2;
+
+    .navbar__name {
+      font-weight: 500;
+      color: $gray-900;
+    }
+    .navbar__role {
+      color: $gray-500;
+      font-size: 0.75rem;
+    }
+  }
+
+  @include desktop {
+    .navbar__info {
+      display: flex;
+    }
+  }
+}
