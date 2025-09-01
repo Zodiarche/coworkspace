@@ -1,17 +1,17 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import Navbar from "./components/header/NavBar";
 import { SignIn } from "./views/SignIn";
 import { Community } from "./views/Community";
 import { Dashboard } from "./views/Dashboard";
 import { Profile } from "./views/Profile";
 import { Events } from "./views/Events";
 import { Parameters } from "./views/Parameters";
+import Header from "./components/header/Header";
 
 function App() {
   return (
     <>
       <BrowserRouter>
-        <Navbar />
+        <Header />
         <Routes>
           <Route path="/" element={<SignIn />} />
           <Route path="/community" element={<Community />} />
