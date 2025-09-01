@@ -26,10 +26,13 @@ services:
     environment:
       NODE_ENV: development
       PORT: 3000
-      DATABASE_URL: mongodb://admin:password@database:27017/coworkspace_dev?authSource=admin
-      JWT_SECRET: dev-secret-key
-      JWT_EXPIRES_IN: 24h
+      MONGODB_URI: mongodb://admin:password@database:27017/coworkspace-db-dev?authSource=admin
+      JWT_SECRET: 3d85163f7bef84e4ea26c4711755c765
+      JWT_EXPIRES_IN: 3600
       CORS_ORIGIN: http://localhost:5173
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: password
+      MONGO_INITDB_DATABASE: coworkspace
     volumes:
       - ./backend:/app
       - /app/node_modules

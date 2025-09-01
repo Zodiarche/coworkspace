@@ -1,12 +1,3 @@
-node_modules
-npm-debug.log
-dist
-coverage
-.git
-.env
-.env.local
-README.md
-.eslintrc.json
-.prettierrc.json
-*.test.ts
-*.spec.ts
+node_modules;
+npm - debug.log;
+Dockerfile * dist.git.gitignore.vscode.idea;
