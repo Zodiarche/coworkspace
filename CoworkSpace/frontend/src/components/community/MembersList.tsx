@@ -1,14 +1,5 @@
 import MemberCard from "./MemberCard";
-
-interface Member {
-  id: string;
-  firstname: string;
-  lastname: string;
-  profession: string;
-  city: string;
-  country: string;
-  photo: string;
-}
+import type { Member } from "@/types/member";
 
 export default function MembersList({ members }: { members: Member[] }) {
   return (

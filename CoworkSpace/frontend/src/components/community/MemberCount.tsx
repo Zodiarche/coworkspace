@@ -1,9 +1,4 @@
-interface Member {
-  id: number;
-  firstname: string;
-  lastname: string;
-  profession: string;
-}
+import type { Member } from "@/types/member";
 
 export default function MemberCount({ members }: { members: Member[] }) {
   return (
