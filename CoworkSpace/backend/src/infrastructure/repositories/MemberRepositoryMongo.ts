@@ -26,7 +26,7 @@ export class MemberRepositoryMongo implements MemberRepository {
   }
 
   async findRandom(excludeId: string): Promise<Member | null> {
-    const pipeline: any[] = [
+    const pipeline = [
       { $match: { id: { $ne: excludeId } } },
       { $sample: { size: 1 } },
     ];

@@ -1,14 +1,20 @@
-import { MembershipType } from "../../domain/entities/Member";
+import z from "zod";
+import { membershipEnum } from "../../zod/utils";
 
-export interface MemberDTO {
-  id: string;
-  firstname: string;
-  lastname: string;
-  email: string;
-  photo?: string;
-  profession?: string;
-  company?: string;
-  skills?: string[];
-  membershipType: MembershipType;
-  isManager: boolean;
-}
+export const memberSchema = z
+  .object({
+    id: z.string(),
+    firstname: z.string().min(2).max(100),
+    lastname: z.string().min(2).max(100),
+    email: z.string().email(),
+    photo: z.string().url().optional(),
+    profession: z.string().max(100).optional(),
+    company: z.string().max(100).optional(),
+    skills: z.array(z.string().max(100)).optional(),
+    membershipType: membershipEnum,
+    isManager: z.boolean(),
+  })
+  .strict();
+
+export type MemberInput = z.input<typeof memberSchema>;
+export type MemberDTO = z.output<typeof memberSchema>;

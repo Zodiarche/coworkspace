@@ -28,11 +28,13 @@ services:
       PORT: 3000
       MONGODB_URI: mongodb://admin:password@database:27017/coworkspace-db-dev?authSource=admin
       JWT_SECRET: 3d85163f7bef84e4ea26c4711755c765
-      JWT_EXPIRES_IN: 3600
+      JWT_EXPIRES_IN: 2629800
       CORS_ORIGIN: http://localhost:5173
       MONGO_INITDB_ROOT_USERNAME: root
       MONGO_INITDB_ROOT_PASSWORD: password
       MONGO_INITDB_DATABASE: coworkspace
+      CHOKIDAR_USEPOLLING: "true"
+      CHOKIDAR_INTERVAL: "300"
     volumes:
       - ./backend:/app
       - /app/node_modules
