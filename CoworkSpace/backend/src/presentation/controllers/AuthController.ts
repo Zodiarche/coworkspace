@@ -7,9 +7,12 @@ export class AuthController {
   login = async (req: Request, res: Response) => {
     try {
       const result = await this.loginUseCase.execute(req.body);
+
       res.json(result);
     } catch (e: any) {
-      res.status(401).json({ error: e.message || "Login failed" });
+      res
+        .status(401)
+        .json({ error: e.message || "Echec de l'authentification" });
     }
   };
 }

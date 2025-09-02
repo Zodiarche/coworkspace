@@ -8,5 +8,6 @@ export interface CreateMemberDTO {
   password: string;
   profession?: string;
   membershipType: MembershipType;
+  joinDate: Date;
   isManager: boolean;
 }

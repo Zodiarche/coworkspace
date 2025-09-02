@@ -5,7 +5,9 @@ import { UpdateMemberProfileUseCase } from "../../application/use-cases/UpdateMe
 
 export class MemberController {
   constructor(
-    private readonly getRandomUseCaseFactory: (currentUserId: string) => GetRandomMemberUseCase,
+    private readonly getRandomUseCaseFactory: (
+      currentUserId: string
+    ) => GetRandomMemberUseCase,
     private readonly listUseCase: ListMembersUseCase,
     private readonly updateOwnUseCase: UpdateMemberProfileUseCase
   ) {}
@@ -15,14 +17,23 @@ export class MemberController {
       const uid = req.user!.sub;
       const uc = this.getRandomUseCaseFactory(uid);
       const member = await uc.execute();
+
       res.json(member);
     } catch (e: any) {
-      res.status(400).json({ error: e.message || "Failed to get random member" });
+      res.status(400).json({
+        error: e.message || "Echec de la récupération du membre aléatoire",
+      });
     }
   };
 
   list = async (req: Request, res: Response) => {
-    const { page = 1, size = 10, name, profession, membershipType } = req.query as any;
+    const {
+      page = 1,
+      size = 10,
+      name,
+      profession,
+      membershipType,
+    } = req.query as any;
     try {
       const data = await this.listUseCase.execute(
         { name, profession, membershipType },
@@ -30,7 +41,9 @@ export class MemberController {
       );
       res.json(data);
     } catch (e: any) {
-      res.status(400).json({ error: e.message || "Failed to list members" });
+      res.status(400).json({
+        error: e.message || "Echec lors de la récupération des membres",
+      });
     }
   };
 
@@ -38,9 +51,12 @@ export class MemberController {
     try {
       const id = req.user!.sub;
       const updated = await this.updateOwnUseCase.execute(id, req.body);
+
       res.json(updated);
     } catch (e: any) {
-      res.status(400).json({ error: e.message || "Failed to update profile" });
+      res
+        .status(400)
+        .json({ error: e.message || "Echec de la mise à jour du profil" });
     }
   };
 }

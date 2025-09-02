@@ -6,13 +6,13 @@ export const AuthMiddleware = (tokens: TokenProvider) => {
     try {
       const auth = req.headers.authorization || "";
       const [, token] = auth.split(" ");
-      if (!token) return res.status(401).json({ error: "Missing token" });
+      if (!token) return res.status(401).json({ error: "Token manquant." });
 
       const payload = await tokens.verify(token);
       req.user = payload;
       next();
     } catch (e) {
-      return res.status(401).json({ error: "Invalid token" });
+      return res.status(401).json({ error: "Token invalide." });
     }
   };
 };

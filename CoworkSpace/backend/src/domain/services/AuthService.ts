@@ -12,10 +12,10 @@ export class AuthService {
 
   async login(email: string, password: string): Promise<AuthResult> {
     const member = await this.repo.findByEmail(email);
-    if (!member) throw new Error("Invalid credentials");
+    if (!member) throw new Error("Identifiants invalides");
 
     const ok = await this.hasher.compare(password, member.password);
-    if (!ok) throw new Error("Invalid credentials");
+    if (!ok) throw new Error("Identifiants invalides");
 
     const token = await this.tokens.sign(
       { sub: member.id, email: member.email, isManager: member.isManager },

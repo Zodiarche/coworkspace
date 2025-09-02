@@ -73,7 +73,6 @@ app.use(express.json());
 
   const port = Number(process.env.PORT);
   app.listen(port, () => console.log(`[Server] Listening on port ${port}`));
-})().catch((err) => {
-  console.error("Fatal bootstrap error:", err);
+})().catch(() => {
   process.exit(1);
 });
