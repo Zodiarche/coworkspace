@@ -23,7 +23,6 @@ export class MemberController {
       const id = req.user!.sub;
       const uc = this.getRandomUseCaseFactory(id);
       const member = await uc.execute();
-      console.log(member);
 
       const dto = memberSchema.parse(member);
       res.json(dto);
