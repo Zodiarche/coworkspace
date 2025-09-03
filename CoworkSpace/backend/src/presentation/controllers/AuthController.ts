@@ -11,6 +11,14 @@ export class AuthController {
       const credentials = loginSchema.parse(req.body);
 
       const result = await this.loginUseCase.execute(credentials);
+
+      res.cookie("token", result.token, {
+        httpOnly: true,
+        secure: process.env.NODE_ENV === "production",
+        sameSite: "strict",
+        maxAge: 604800, // 1 semaine
+      });
+
       res.json(result);
     } catch (e) {
       if (e instanceof z.ZodError) {
