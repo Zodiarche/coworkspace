@@ -37,4 +37,21 @@ export class AuthController {
       res.status(401).json({ error: message });
     }
   };
+
+  verifyToken = async (req: Request, res: Response): Promise<void> => {
+    try {
+      const token = req.cookies.token;
+      if (!token) throw new Error("Token manquant");
+
+      const result = await this.loginUseCase.verifyToken(token);
+      res.json(result);
+    } catch (e) {
+      const message =
+        e && typeof e === "object" && "message" in e
+          ? (e as any).message
+          : "Échec de la vérification du token";
+
+      res.status(401).json({ error: message });
+    }
+  };
 }

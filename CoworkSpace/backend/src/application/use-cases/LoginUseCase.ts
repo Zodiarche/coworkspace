@@ -7,4 +7,8 @@ export class LoginUseCase {
   async execute(req: LoginRequestDTO) {
     return this.auth.login(req.email, req.password);
   }
+
+  async verifyToken(token: string) {
+    return this.auth.verifyToken(token);
+  }
 }
