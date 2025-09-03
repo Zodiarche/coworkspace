@@ -25,6 +25,7 @@ export const buildRoutes = (deps: {
     deps.member.getRandom
   );
   router.get("/members", AuthMiddleware(deps.tokens), deps.member.list);
+
   router.patch(
     "/members/me",
     AuthMiddleware(deps.tokens),

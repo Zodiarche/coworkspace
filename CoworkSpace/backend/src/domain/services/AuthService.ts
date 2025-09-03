@@ -26,6 +26,11 @@ export class AuthService {
   }
 
   async verifyToken(token: string) {
-    return this.tokens.verify(token);
+    const payload = await this.tokens.verify(token);
+
+    const member = await this.repo.findById(payload.sub);
+    if (!member) throw new Error("Membre non trouvé");
+
+    return { member };
   }
 }
