@@ -1,6 +1,6 @@
-import { Member } from "../entities/Member";
+import { MemberDTO } from "../../application/dto/MemberDTO";
 
 export interface AuthResult {
   token: string;
-  member: Member;
+  member: MemberDTO;
 }
