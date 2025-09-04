@@ -2,13 +2,20 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { Login } from "./views/Login";
 import { Community } from "./views/Community";
 import { Dashboard } from "./views/Dashboard";
-import { Profile } from "./views/Profile";
 import { Events } from "./views/Events";
 import { Settings } from "./views/Settings";
 import Header from "./components/header/Header";
 import RequireAuth from "./routes/RequireAuth";
+import Profile from "./views/Profile";
+import { useAuth } from "./contexts/auth";
+import { useEffect } from "react";
 
 function App() {
+  const { getMe } = useAuth();
+  useEffect(() => {
+    getMe();
+  }, []);
+
   return (
     <>
       <BrowserRouter>
