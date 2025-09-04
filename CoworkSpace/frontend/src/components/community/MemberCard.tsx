@@ -2,14 +2,14 @@ import type { Member } from "../../types/member";
 import { useAuth } from "../../contexts/auth";
 import { useNavigate } from "react-router-dom";
 
-const API = import.meta.env.VITE_API_URL ?? ""; // ex: http://localhost:3000
+const API = import.meta.env.VITE_API_URL ?? "";
 
 export default function MemberCard({
   member,
   onDeleted,
 }: {
   member: Member;
-  onDeleted?: (id: string) => void;
+  onDeleted?: () => void; // callback pour dire au parent de re-fetch
 }) {
   const { user } = useAuth();
   const navigate = useNavigate();
@@ -31,15 +31,14 @@ export default function MemberCard({
         } catch {}
         throw new Error(msg);
       }
-      onDeleted?.(); // ← demande au parent de re-fetch
+      onDeleted?.(); // demande au parent de re-fetch la page courante
     } catch (e: any) {
       alert(`Échec de la suppression : ${e.message || e}`);
     }
   };
 
   const handleEdit = () => {
-    // On passe aussi le membre en state pour préremplir le formulaire d’édition
-    navigate(`/admin/members/${member.id}/edit`, { state: { member } });
+    navigate(`/members/${member.id}/edit`, { state: { member } });
   };
 
   return (
@@ -53,7 +52,7 @@ export default function MemberCard({
         <h3>
           {member.firstname} {member.lastname}
         </h3>
-        <p>{member.profession}</p>
+        {member.profession && <p>{member.profession}</p>}
         {member.city && member.country && (
           <p className="location">
             {member.city}, {member.country}

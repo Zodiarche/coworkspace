@@ -11,5 +11,5 @@ export const toMemberDTO = (m: Member): MemberDTO => ({
   company: m.company,
   skills: m.skills,
   membershipType: m.membershipType,
-  isManager: m.isManager
+  isManager: m.isManager,
 });

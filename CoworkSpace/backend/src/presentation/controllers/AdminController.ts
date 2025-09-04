@@ -21,8 +21,11 @@ export class AdminController {
 
   create = async (req: Request, res: Response) => {
     try {
+      console.log("AdminController.create called with body:", req.body);
       const body = parseOrThrow(memberCreateSchema, req.body);
+      console.log("parsed body:", body);
       const member = await this.createUseCase.execute(body);
+      console.log("member created:", member);
       res.status(201).json(member);
     } catch (e: any) {
       if (e.message === "ValidationError") {
@@ -75,8 +78,6 @@ export class AdminController {
   };
 
   getById = async (req: Request, res: Response) => {
-    console.log("getById admin controller");
-    console.log("req.params:", req.params);
     try {
       const { id } = parseOrThrow(idParamsSchema, req.params);
       const member = await this.getMemberByIdUseCase.execute(id);

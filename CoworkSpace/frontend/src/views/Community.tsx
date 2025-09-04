@@ -3,6 +3,7 @@ import MemberCount from "../components/community/MemberCount";
 import MembersList from "../components/community/MembersList";
 import SearchForm, { Filters } from "../components/community/SearchForm";
 import type { Member } from "@/types/member";
+import { useNavigate } from "react-router-dom";
 
 const API = import.meta.env.VITE_API_URL ?? "";
 
@@ -10,6 +11,8 @@ export const Community = () => {
   const [members, setMembers] = useState<Member[]>([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
+
+  const navigate = useNavigate();
 
   const [filters, setFilters] = useState<Filters>({
     name: "",
@@ -110,6 +113,12 @@ export const Community = () => {
         onChangePage={setPage}
         onChangeSize={handleChangeSize}
       />
+
+      <p>
+        <button onClick={() => navigate("/members/add")}>
+          Ajouter un membre
+        </button>
+      </p>
       {loading && <p>Chargement…</p>}
       {error && <p style={{ color: "crimson" }}>{error}</p>}
       <MemberCount members={members} />

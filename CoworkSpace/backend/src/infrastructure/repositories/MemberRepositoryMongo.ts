@@ -22,7 +22,6 @@ export class MemberRepositoryMongo implements MemberRepository {
   }
 
   async findById(id: string | number) {
-    console.log("findById repo mongo id:", id);
     return this.col().findOne({ id });
   }
 
