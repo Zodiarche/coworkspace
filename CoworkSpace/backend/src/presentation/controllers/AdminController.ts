@@ -6,13 +6,16 @@ import { AssignManagerRoleUseCase } from "../../application/use-cases/AssignMana
 import { CreateMemberUseCase } from "../../application/use-cases/CreateMemberUseCase";
 import { DeleteMemberUseCase } from "../../application/use-cases/DeleteMemberUseCase";
 import { UpdateMemberUseCase } from "../../application/use-cases/UpdateMemberUseCase";
-import { idParamsSchema, parseOrThrow } from "../../zod/utils";
+import { GetMemberByIdUseCase } from "../../application/use-cases/GetMemberByIdUseCase";
+import { parseOrThrow } from "../../zod/utils";
+import { idParamsSchema } from "../../zod/schemas";
 
 export class AdminController {
   constructor(
     private readonly createUseCase: CreateMemberUseCase,
     private readonly updateUseCase: UpdateMemberUseCase,
     private readonly deleteUseCase: DeleteMemberUseCase,
+    private readonly getMemberByIdUseCase: GetMemberByIdUseCase,
     private readonly assignRoleUseCase: AssignManagerRoleUseCase
   ) {}
 
@@ -68,6 +71,26 @@ export class AdminController {
       res
         .status(400)
         .json({ error: e.message || "Échec de la suppression du membre" });
+    }
+  };
+
+  getById = async (req: Request, res: Response) => {
+    console.log("getById admin controller");
+    console.log("req.params:", req.params);
+    try {
+      const { id } = parseOrThrow(idParamsSchema, req.params);
+      const member = await this.getMemberByIdUseCase.execute(id);
+      res.json(member);
+    } catch (e: any) {
+      if (e.message === "ValidationError") {
+        return res.status(400).json({
+          error: "Paramètres invalides",
+          details: e.details,
+        });
+      }
+      res.status(400).json({
+        error: e.message || "Échec de la récupération du membre",
+      });
     }
   };
 

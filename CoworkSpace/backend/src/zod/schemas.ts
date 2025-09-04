@@ -3,7 +3,7 @@ import { membershipEnum } from "./utils";
 
 export const idParamsSchema = z
   .object({
-    id: z.string().uuid(),
+    id: z.string(),
   })
   .strict();
 

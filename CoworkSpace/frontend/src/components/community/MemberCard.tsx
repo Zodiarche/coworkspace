@@ -1,6 +1,47 @@
-import type { Member } from "@/types/member";
+import type { Member } from "../../types/member";
+import { useAuth } from "../../contexts/auth";
+import { useNavigate } from "react-router-dom";
 
-export default function MemberCard({ member }: { member: Member }) {
+const API = import.meta.env.VITE_API_URL ?? ""; // ex: http://localhost:3000
+
+export default function MemberCard({
+  member,
+  onDeleted,
+}: {
+  member: Member;
+  onDeleted?: (id: string) => void;
+}) {
+  const { user } = useAuth();
+  const navigate = useNavigate();
+  const isManager = !!user?.isManager;
+
+  const handleDelete = async () => {
+    if (!window.confirm(`Supprimer ${member.firstname} ${member.lastname} ?`))
+      return;
+    try {
+      const res = await fetch(`${API}/admin/members/${member.id}`, {
+        method: "DELETE",
+        credentials: "include",
+      });
+      if (!res.ok) {
+        let msg = `HTTP ${res.status}`;
+        try {
+          const j = await res.json();
+          msg = j.error || msg;
+        } catch {}
+        throw new Error(msg);
+      }
+      onDeleted?.(); // ← demande au parent de re-fetch
+    } catch (e: any) {
+      alert(`Échec de la suppression : ${e.message || e}`);
+    }
+  };
+
+  const handleEdit = () => {
+    // On passe aussi le membre en state pour préremplir le formulaire d’édition
+    navigate(`/admin/members/${member.id}/edit`, { state: { member } });
+  };
+
   return (
     <div className="member-card">
       <img
@@ -13,10 +54,23 @@ export default function MemberCard({ member }: { member: Member }) {
           {member.firstname} {member.lastname}
         </h3>
         <p>{member.profession}</p>
-        <p className="location">
-          {member.city}, {member.country}
-        </p>
+        {member.city && member.country && (
+          <p className="location">
+            {member.city}, {member.country}
+          </p>
+        )}
       </div>
+
+      {isManager && (
+        <div className="member-actions">
+          <button type="button" onClick={handleEdit}>
+            Modifier
+          </button>
+          <button type="button" className="danger" onClick={handleDelete}>
+            Supprimer
+          </button>
+        </div>
+      )}
     </div>
   );
 }
