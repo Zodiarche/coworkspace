@@ -2,7 +2,7 @@ import { useAuth } from "../../contexts/auth";
 import { NavLink } from "react-router-dom";
 
 export default function Header() {
-  const { user } = useAuth();
+  const { user, logout } = useAuth();
 
   return (
     <header className="navbar">
@@ -43,19 +43,11 @@ export default function Header() {
 
       {/* Profile */}
       {user ? (
-        <div className="navbar__right">
-          <div className="navbar__profile">
-            <img src={user.photo} alt="Profil" />
-            <div className="navbar__info">
-              <span className="navbar__name">{user.firstname}</span>
-              <span className="navbar__role">{user.profession}</span>
-            </div>
-          </div>
-        </div>
+        <NavLink to="/profile">Mon profil</NavLink>
       ) : (
-        <div className="navbar__right">
-          <button onClick={() => console.log("Login")}>Se connecter</button>
-        </div>
+        <NavLink to="/login" className="navbar__profile-link" onClick={logout}>
+          Se déconnecter
+        </NavLink>
       )}
     </header>
   );

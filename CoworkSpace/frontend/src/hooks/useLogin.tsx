@@ -10,7 +10,9 @@ export function useLogin() {
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
+    console.log("login");
     const ok = await login(email, password);
+    console.log("ok : ", ok);
     if (ok) navigate("/community");
   }
 

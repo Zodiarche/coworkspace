@@ -3,42 +3,36 @@ import React, { useEffect, useState } from "react";
 import type { Member } from "@/types/member";
 import { AuthContext } from "./context";
 
-const TOKEN_KEY = "auth:token"; // sessionStorage key
-
 export function AuthProvider({ children }: { children: React.ReactNode }) {
   const [user, setUser] = useState<Member | null>(null);
   const [token, setToken] = useState<string | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
-  // Au montage : restaure le token depuis sessionStorage puis refresh le user
-  useEffect(() => {
-    const t = sessionStorage.getItem(TOKEN_KEY);
-    if (t) setToken(t);
-    refresh(t ?? null).finally(() => setLoading(false));
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-
-  async function refresh(existingToken?: string | null) {
-    const tk = existingToken ?? token;
-    if (!tk) {
-      setUser(null);
-      return;
-    }
+  async function getMe() {
+    console.log("getMe called !");
+    setLoading(true);
+    setError(null);
     try {
       setError(null);
-      const res = await fetch("http://localhost:3000/api/auth/me", {
-        headers: { Authorization: `Bearer ${tk}` },
+      const res = await fetch("http://localhost:3000/api/auth/login/verify", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        credentials: "include",
       });
       if (!res.ok) {
         setUser(null);
         return;
       }
+
       const me: Member = await res.json();
+      console.log("User fetched: ", me);
       setUser(me);
     } catch {
       setUser(null);
       setError("Impossible de récupérer la session.");
+    } finally {
+      setLoading(false);
     }
   }
 
@@ -49,23 +43,19 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       const res = await fetch("http://localhost:3000/api/auth/login", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
+        credentials: "include",
         body: JSON.stringify({ email, password }),
       });
 
       const data = await res.json().catch(() => ({}));
-      console.log("data :", data);
 
       if (data.token && data.member) {
         setToken(data.token);
         setUser(data.member);
-      } else {
-        setError("Connexion impossible");
-        return false;
       }
-
       return true;
     } catch {
-      setError("Erreur réseau.");
+      setError("Erreur lors de la connexion.");
       return false;
     } finally {
       setLoading(false);
@@ -79,20 +69,53 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       if (token) {
         await fetch("http://localhost:3000/api/auth/logout", {
           method: "POST",
-          headers: { Authorization: `Bearer ${token}` },
+          credentials: "include",
         });
       }
     } finally {
       setUser(null);
       setToken(null);
-      sessionStorage.removeItem(TOKEN_KEY);
+      setLoading(false);
+    }
+  }
+
+  async function update(updatedUser: Partial<Member>) {
+    setLoading(true);
+    setError(null);
+    console.log("token: ", token);
+    console.log("updatedUser: ", updatedUser);
+    try {
+      const res = await fetch("http://localhost:3000/api/members/me", {
+        method: "PATCH",
+        headers: {
+          "Content-Type": "application/json",
+          // Authorization: `Bearer ${token}`,
+        },
+        credentials: "include",
+        body: JSON.stringify({ ...updatedUser }),
+      });
+      const data = await res.json();
+      console.log(data);
+      setUser({ ...data });
+    } catch {
+      setError("Erreur lors de la modification du profil.");
+    } finally {
       setLoading(false);
     }
   }
 
   return (
     <AuthContext.Provider
-      value={{ user, token, loading, error, login, logout, refresh }}
+      value={{
+        user,
+        token,
+        loading,
+        error,
+        login,
+        logout,
+        getMe,
+        update,
+      }}
     >
       {children}
     </AuthContext.Provider>
