@@ -1,20 +1,15 @@
-import { useState } from "react";
-import useLogin from "../../hooks/useLogin";
-import { useNavigate } from "react-router-dom";
+import { useLogin } from "../../hooks/useLogin";
 
 export default function LoginForm() {
-  const { signIn, error, loading } = useLogin();
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const navigate = useNavigate();
-
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    const success = await signIn(email, password);
-    if (success) {
-      navigate("/community");
-    }
-  };
+  const {
+    email,
+    setEmail,
+    password,
+    setPassword,
+    loading,
+    error,
+    handleSubmit,
+  } = useLogin();
 
   return (
     <form className="login-form" onSubmit={handleSubmit}>

@@ -1,43 +1,26 @@
 import { useState } from "react";
-import type { Member } from "@/types/member";
-import { useAuth } from "../contexts/auth/useAuth";
+import { useAuth } from "../contexts/auth/index";
+import { useNavigate } from "react-router-dom";
 
-export default function useLogin() {
-  const { login } = useAuth();
-  const [error, setError] = useState<string | null>(null);
-  const [loading, setLoading] = useState(false);
+export function useLogin() {
+  const { login, loading, error } = useAuth();
+  const [email, setEmail] = useState("sarah.martin@example.com");
+  const [password, setPassword] = useState("sarah.martin");
+  const navigate = useNavigate();
 
-  async function signIn(email: string, password: string): Promise<boolean> {
-    setLoading(true);
-    setError(null);
-
-    try {
-      // (test avant d'intégrer le backend)
-      const res = await fetch("/data/members.json");
-      if (!res.ok) throw new Error("Impossible de charger les membres");
-
-      const members: (Member & { password?: string })[] = await res.json();
-
-      const found = members.find((m) => m.email === email);
-      if (!found) {
-        setError("Email inconnu");
-        return false;
-      }
-
-      if (password !== "password") {
-        setError("Mot de passe incorrect");
-        return false;
-      }
-
-      login(found);
-      return true;
-    } catch (err) {
-      setError((err as Error).message);
-      return false;
-    } finally {
-      setLoading(false);
-    }
+  async function handleSubmit(e: React.FormEvent) {
+    e.preventDefault();
+    const ok = await login(email, password);
+    if (ok) navigate("/community");
   }
 
-  return { signIn, error, loading };
+  return {
+    email,
+    setEmail,
+    password,
+    setPassword,
+    loading,
+    error,
+    handleSubmit,
+  };
 }

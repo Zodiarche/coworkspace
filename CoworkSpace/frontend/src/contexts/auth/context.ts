@@ -3,8 +3,12 @@ import type { Member } from "@/types/member";
 
 export type AuthContextValue = {
   user: Member | null;
-  login: (user: Member) => void;
-  logout: () => void;
+  token: string | null;
+  loading: boolean;
+  error: string | null;
+  login: (email: string, password: string) => Promise<boolean>;
+  logout: () => Promise<void>;
+  refresh: () => Promise<void>;
 };
 
 export const AuthContext = createContext<AuthContextValue | undefined>(

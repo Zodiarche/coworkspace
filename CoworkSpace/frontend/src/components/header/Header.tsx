@@ -1,6 +1,9 @@
+import { useAuth } from "../../contexts/auth";
 import { NavLink } from "react-router-dom";
 
 export default function Header() {
+  const { user } = useAuth();
+
   return (
     <header className="navbar">
       {/* Logo */}
@@ -12,7 +15,7 @@ export default function Header() {
       {/* Links */}
       <nav className="navbar__menu">
         <NavLink
-          to="/"
+          to="/dashboard"
           end
           className={({ isActive }) => (isActive ? "active" : "")}
         >
@@ -39,15 +42,21 @@ export default function Header() {
       </nav>
 
       {/* Profile */}
-      <div className="navbar__right">
-        <div className="navbar__profile">
-          <img src="/profile.jpg" alt="Profil" />
-          <div className="navbar__info">
-            <span className="navbar__name">Bocar Coly</span>
-            <span className="navbar__role">Architecte logiciel</span>
+      {user ? (
+        <div className="navbar__right">
+          <div className="navbar__profile">
+            <img src={user.photo} alt="Profil" />
+            <div className="navbar__info">
+              <span className="navbar__name">{user.firstname}</span>
+              <span className="navbar__role">{user.profession}</span>
+            </div>
           </div>
         </div>
-      </div>
+      ) : (
+        <div className="navbar__right">
+          <button onClick={() => console.log("Login")}>Se connecter</button>
+        </div>
+      )}
     </header>
   );
 }
