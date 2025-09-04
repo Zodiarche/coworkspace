@@ -4,8 +4,7 @@ import { TokenProvider } from "../../domain/interfaces/TokenProvider";
 export const AuthMiddleware = (tokens: TokenProvider) => {
   return async (req: Request, res: Response, next: NextFunction) => {
     try {
-      const auth = req.headers.authorization || "";
-      const [, token] = auth.split(" ");
+      const token = req.cookies.token;
       if (!token) return res.status(401).json({ error: "Token manquant." });
 
       const payload = await tokens.verify(token);

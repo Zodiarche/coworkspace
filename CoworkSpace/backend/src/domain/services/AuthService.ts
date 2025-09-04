@@ -1,3 +1,4 @@
+import { toMemberDTO } from "../../application/mappers/MemberMapper";
 import { MemberRepository } from "../interfaces/MemberRepository";
 import { PasswordHasher } from "../interfaces/PasswordHasher";
 import { TokenProvider } from "../interfaces/TokenProvider";
@@ -22,10 +23,15 @@ export class AuthService {
       Number(process.env.JWT_EXPIRES_IN)
     );
 
-    return { token, member };
+    return { token, member: toMemberDTO(member) };
   }
 
   async verifyToken(token: string) {
-    return this.tokens.verify(token);
+    const payload = await this.tokens.verify(token);
+
+    const member = await this.repo.findById(payload.sub);
+    if (!member) throw new Error("Membre non trouvé");
+
+    return { member: toMemberDTO(member) };
   }
 }
