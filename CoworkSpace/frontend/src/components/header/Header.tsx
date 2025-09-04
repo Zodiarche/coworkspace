@@ -14,41 +14,46 @@ export default function Header() {
 
       {/* Links */}
       <nav className="navbar__menu">
-        <NavLink
-          to="/dashboard"
-          end
-          className={({ isActive }) => (isActive ? "active" : "")}
-        >
-          Dashboard
-        </NavLink>
-        <NavLink
-          to="/community"
-          className={({ isActive }) => (isActive ? "active" : "")}
-        >
-          Communauté
-        </NavLink>
-        <NavLink
-          to="/events"
-          className={({ isActive }) => (isActive ? "active" : "")}
-        >
-          Événements
-        </NavLink>
-        <NavLink
-          to="/settings"
-          className={({ isActive }) => (isActive ? "active" : "")}
-        >
-          Paramètres
-        </NavLink>
-      </nav>
+        {user && (
+          <>
+            <NavLink
+              to="/dashboard"
+              end
+              className={({ isActive }) => (isActive ? "active" : "")}
+            >
+              Dashboard
+            </NavLink>
+            <NavLink
+              to="/community"
+              className={({ isActive }) => (isActive ? "active" : "")}
+            >
+              Communauté
+            </NavLink>
+            <NavLink
+              to="/events"
+              className={({ isActive }) => (isActive ? "active" : "")}
+            >
+              Événements
+            </NavLink>
+            <NavLink
+              to="/settings"
+              className={({ isActive }) => (isActive ? "active" : "")}
+            >
+              Paramètres
+            </NavLink>
 
-      {/* Profile */}
-      {user ? (
-        <NavLink to="/profile">Mon profil</NavLink>
-      ) : (
-        <NavLink to="/login" className="navbar__profile-link" onClick={logout}>
-          Se déconnecter
-        </NavLink>
-      )}
+            {/* Profile */}
+            <NavLink to="/profile">Mon profil</NavLink>
+            <NavLink
+              to="/login"
+              className="navbar__profile-link"
+              onClick={logout}
+            >
+              Se déconnecter
+            </NavLink>
+          </>
+        )}
+      </nav>
     </header>
   );
 }
