@@ -62,6 +62,15 @@ export default function Header() {
           </>
         )}
       </nav>
+
+      {/* Profile */}
+      {user ? (
+        <NavLink to="/profile">Mon profil</NavLink>
+      ) : (
+        <NavLink to="/login" className="navbar__profile-link" onClick={logout}>
+          Se déconnecter
+        </NavLink>
+      )}
     </header>
   );
 }

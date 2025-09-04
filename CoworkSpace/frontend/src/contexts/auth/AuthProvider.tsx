@@ -10,7 +10,6 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   const [error, setError] = useState<string | null>(null);
 
   async function getMe() {
-    console.log("getMe called !");
     setLoading(true);
     setError(null);
     try {
@@ -26,7 +25,6 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       }
 
       const me: Member = await res.json();
-      console.log("User fetched: ", me);
       setUser(me);
     } catch {
       setUser(null);
@@ -82,8 +80,6 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   async function update(updatedUser: Partial<Member>) {
     setLoading(true);
     setError(null);
-    console.log("token: ", token);
-    console.log("updatedUser: ", updatedUser);
     try {
       const res = await fetch("http://localhost:3000/api/members/me", {
         method: "PATCH",
@@ -94,7 +90,6 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
         body: JSON.stringify({ ...updatedUser }),
       });
       const data = await res.json();
-      console.log(data);
       setUser({ ...data });
     } catch {
       setError("Erreur lors de la modification du profil.");
