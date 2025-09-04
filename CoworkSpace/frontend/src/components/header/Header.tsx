@@ -44,6 +44,14 @@ export default function Header() {
 
             {/* Profile */}
             <NavLink to="/profile">Mon profil</NavLink>
+            {user?.isManager && (
+              <NavLink
+                to="/admin"
+                className={({ isActive }) => (isActive ? "active" : "")}
+              >
+                Admin
+              </NavLink>
+            )}
             <NavLink
               to="/login"
               className="navbar__profile-link"

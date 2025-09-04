@@ -9,6 +9,8 @@ import RequireAuth from "./routes/RequireAuth";
 import Profile from "./views/Profile";
 import { useAuth } from "./contexts/auth";
 import { useEffect } from "react";
+import RequireAdmin from "./routes/RequireAdmin";
+import Admin from "./views/Admin";
 
 function App() {
   const { getMe } = useAuth();
@@ -28,6 +30,9 @@ function App() {
             <Route path="/profile" element={<Profile />} />
             <Route path="/events" element={<Events />} />
             <Route path="/settings" element={<Settings />} />
+          </Route>
+          <Route element={<RequireAdmin />}>
+            <Route path="/admin" element={<Admin />} />
           </Route>
           <Route path="*" element={<Login />} />
         </Routes>

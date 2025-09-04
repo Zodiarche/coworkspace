@@ -1,5 +1,5 @@
 // src/contexts/auth/AuthProvider.tsx
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import type { Member } from "@/types/member";
 import { AuthContext } from "./context";
 
@@ -89,7 +89,6 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
         method: "PATCH",
         headers: {
           "Content-Type": "application/json",
-          // Authorization: `Bearer ${token}`,
         },
         credentials: "include",
         body: JSON.stringify({ ...updatedUser }),
