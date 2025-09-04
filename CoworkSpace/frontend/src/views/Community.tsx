@@ -14,7 +14,7 @@ export const Community = () => {
   }, []);
 
   return (
-    <>
+    <section className="layout">
       <h1>Découvrir la Communauté</h1>
       <p>
         Rencontrez des professionnels passionés, échangez vos compétences et
@@ -23,6 +23,6 @@ export const Community = () => {
 
       <MemberCount members={members} />
       <MembersList members={members} />
-    </>
+    </section>
   );
 };

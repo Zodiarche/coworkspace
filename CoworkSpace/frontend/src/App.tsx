@@ -22,6 +22,7 @@ function App() {
             <Route path="/events" element={<Events />} />
             <Route path="/settings" element={<Settings />} />
           </Route>
+          <Route path="*" element={<Login />} />
         </Routes>
       </BrowserRouter>
     </>

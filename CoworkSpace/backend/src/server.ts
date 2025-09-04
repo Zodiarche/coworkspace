@@ -20,7 +20,12 @@ import { MemberController } from "./presentation/controllers/MemberController";
 import { buildRoutes } from "./presentation/routes";
 
 const app = express();
-app.use(cors());
+app.use(
+  cors({
+    origin: process.env.CORS_ORIGIN,
+    credentials: true,
+  })
+);
 app.use(express.json());
 
 (async () => {

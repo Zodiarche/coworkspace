@@ -1,2 +1,2 @@
-export { default as AuthProvider } from "./AuthProvider";
+export { AuthProvider } from "./AuthProvider";
 export { useAuth } from "./useAuth";
