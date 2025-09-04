@@ -16,6 +16,7 @@ export const buildRoutes = (deps: {
 
   // Auth
   router.post("/auth/login", deps.auth.login);
+  router.post("/auth/logout", deps.auth.logout);
   router.post("/auth/login/verify", deps.auth.verifyToken);
 
   // Authenticated routes
