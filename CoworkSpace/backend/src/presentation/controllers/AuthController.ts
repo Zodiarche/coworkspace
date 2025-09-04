@@ -54,4 +54,14 @@ export class AuthController {
       res.status(401).json({ error: message });
     }
   };
+
+  logout = (req: Request, res: Response): void => {
+    res.clearCookie("token", {
+      httpOnly: true,
+      secure: process.env.NODE_ENV === "production",
+      sameSite: "strict",
+    });
+
+    res.json({ message: "Déconnexion réussie" });
+  };
 }
