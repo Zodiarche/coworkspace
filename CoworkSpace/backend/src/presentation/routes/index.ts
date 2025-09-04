@@ -40,6 +40,12 @@ export const buildRoutes = (deps: {
     RoleMiddleware(),
     deps.admin.create
   );
+  router.get(
+    "/admin/members/:id",
+    AuthMiddleware(deps.tokens),
+    RoleMiddleware(),
+    deps.admin.getById
+  );
   router.put(
     "/admin/members/:id",
     AuthMiddleware(deps.tokens),

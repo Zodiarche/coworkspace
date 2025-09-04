@@ -7,7 +7,10 @@ export interface MemberRepository {
   findByEmail(email: string): Promise<Member | null>;
   findById(id: string): Promise<Member | null>;
   findRandom(excludeId: string): Promise<Member | null>;
-  search(filter: FilterCriteria, page: { page: number; size: number }): Promise<Page<Member>>;
+  search(
+    filter: FilterCriteria,
+    page: { page: number; size: number }
+  ): Promise<Page<Member>>;
   create(data: Partial<Member>): Promise<Member>;
   update(id: string, data: Partial<Member>): Promise<Member>;
   delete(id: string): Promise<void>;

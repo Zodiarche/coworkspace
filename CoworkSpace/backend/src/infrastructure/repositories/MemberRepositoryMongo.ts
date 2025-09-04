@@ -21,7 +21,8 @@ export class MemberRepositoryMongo implements MemberRepository {
     return this.col().findOne({ email });
   }
 
-  async findById(id: string): Promise<Member | null> {
+  async findById(id: string | number) {
+    console.log("findById repo mongo id:", id);
     return this.col().findOne({ id });
   }
 

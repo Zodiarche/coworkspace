@@ -33,3 +33,22 @@
     color: #777;
   }
 }
+
+.member-actions {
+  margin-top: 8px;
+  display: flex;
+  gap: 8px;
+
+  button {
+    padding: 6px 10px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    background: #fafafa;
+    cursor: pointer;
+  }
+  .danger {
+    border-color: #e5b3b3;
+    background: #ffecec;
+    color: #b80000;
+  }
+}

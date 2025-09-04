@@ -1,11 +1,17 @@
 import MemberCard from "./MemberCard";
-import type { Member } from "@/types/member";
+import type { Member } from "../../types/member";
 
-export default function MembersList({ members }: { members: Member[] }) {
+export default function MembersList({
+  members,
+  onDeleted,
+}: {
+  members: Member[];
+  onDeleted?: () => void;
+}) {
   return (
     <div className="members-list">
-      {members.map((member) => (
-        <MemberCard key={member.id} member={member} />
+      {members.map((m) => (
+        <MemberCard key={m.id} member={m} onDeleted={onDeleted} />
       ))}
     </div>
   );

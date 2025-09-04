@@ -67,6 +67,10 @@ export class MemberService {
     return this.repo.delete(id);
   }
 
+  async getMemberById(id: string): Promise<Member | null> {
+    return this.repo.findById(id);
+  }
+
   async assignManagerRole(id: string): Promise<Member> {
     return this.repo.update(id, { isManager: true });
   }
