@@ -53,7 +53,12 @@ export class MemberController {
         size: z.number().int().positive(),
       });
 
-      const dto = listResponseSchema.parse(data);
+      const dto = listResponseSchema.parse({
+        items: data.items,
+        total: data.total,
+        page,
+        size,
+      });
       res.json(dto);
     } catch (e: any) {
       if (e instanceof ZodError) {
