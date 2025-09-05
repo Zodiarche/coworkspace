@@ -1,4 +1,3 @@
-// src/contexts/auth/AuthProvider.tsx
 import React, { useState } from "react";
 import type { Member } from "@/types/member";
 import { AuthContext } from "./context";
