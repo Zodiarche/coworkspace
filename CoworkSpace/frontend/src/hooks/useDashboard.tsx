@@ -13,9 +13,12 @@ export const useDashboard = () => {
 
   const fetchRandomMember = async () => {
     try {
-      const res = await fetch("http://localhost:3000/api/members/random", {
-        credentials: "include",
-      });
+      const res = await fetch(
+        `${import.meta.env.VITE_API_URL}/members/random`,
+        {
+          credentials: "include",
+        }
+      );
       if (!res.ok) throw new Error(`HTTP ${res.status}`);
       const data = await res.json();
       setRandomMember(data);

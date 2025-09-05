@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-const API = import.meta.env.VITE_API_URL ?? ""; // ex: http://localhost:3000
+const API = import.meta.env.VITE_API_URL || "http://localhost:3000";
 
 type Gender = "male" | "female" | "other";
 type MembershipType = "Basic" | "Premium" | "Enterprise";
