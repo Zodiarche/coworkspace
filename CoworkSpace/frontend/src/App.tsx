@@ -1,7 +1,7 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { Login } from "./views/Login";
 import { Community } from "./views/Community";
-import { Dashboard } from "./views/Dashboard";
+import Dashboard from "./views/Dashboard";
 import Header from "./components/header/Header";
 import RequireAuth from "./routes/RequireAuth";
 import Profile from "./views/Profile";
