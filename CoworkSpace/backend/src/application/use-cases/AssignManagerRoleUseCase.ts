@@ -5,6 +5,7 @@ export class AssignManagerRoleUseCase {
   constructor(private readonly members: MemberService) {}
 
   async execute(id: string) {
+    console.log("execing AssignManagerRoleUseCase with id:", id);
     const m = await this.members.assignManagerRole(id);
 
     return toMemberDTO(m);

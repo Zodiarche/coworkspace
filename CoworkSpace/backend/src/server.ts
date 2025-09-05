@@ -19,6 +19,8 @@ import { AdminController } from "./presentation/controllers/AdminController";
 import { AuthController } from "./presentation/controllers/AuthController";
 import { MemberController } from "./presentation/controllers/MemberController";
 import { buildRoutes } from "./presentation/routes";
+import { get } from "http";
+import { GetMemberByIdUseCase } from "./application/use-cases/GetMemberByIdUseCase";
 
 const app = express();
 app.use(
@@ -48,6 +50,7 @@ app.use(cookieParser());
   const updateMemberUC = new UpdateMemberUseCase(memberService);
   const deleteMemberUC = new DeleteMemberUseCase(memberService);
   const assignManagerUC = new AssignManagerRoleUseCase(memberService);
+  const getMemberByIdUC = new GetMemberByIdUseCase(memberService);
 
   // Controllers
   const authController = new AuthController(loginUC);
@@ -61,6 +64,7 @@ app.use(cookieParser());
     createMemberUC,
     updateMemberUC,
     deleteMemberUC,
+    getMemberByIdUC,
     assignManagerUC
   );
 

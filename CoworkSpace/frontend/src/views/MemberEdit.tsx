@@ -12,6 +12,7 @@ const MemberEdit = () => {
   const nav = useNavigate();
 
   const [member, setMember] = useState<UpdateMemberInput | null>(null);
+  const [isManager, setIsManager] = useState(false);
   const [loading, setLoading] = useState(true);
   const [err, setErr] = useState<string | null>(null);
 
@@ -31,8 +32,6 @@ const MemberEdit = () => {
           credentials: "include",
         });
 
-        console.log("res", res);
-
         if (!res.ok) {
           const msg = await res.json().catch(() => ({}));
           throw new Error(
@@ -42,8 +41,9 @@ const MemberEdit = () => {
 
         const data: Member = await res.json();
         // on enlève id / isManager
-        const { id: _, isManager: __, ...updateFields } = data;
+        const { id: _, isManager, ...updateFields } = data;
         setMember(updateFields);
+        setIsManager(isManager);
       } catch (e) {
         setErr((e as Error).message);
       } finally {
@@ -51,6 +51,30 @@ const MemberEdit = () => {
       }
     })();
   }, [id]);
+
+  async function handleAssignManager() {
+    if (!id) return;
+
+    try {
+      const res = await fetch(
+        `${API_BASE}/api/admin/members/${id}/assign-manager`,
+        {
+          method: "POST",
+          credentials: "include",
+        }
+      );
+
+      if (!res.ok) {
+        const msg = await res.json().catch(() => ({}));
+        throw new Error(
+          msg.message || `Échec de l'attribution du rôle (HTTP ${res.status})`
+        );
+      }
+      setMember((prev) => (prev ? { ...prev, isManager: true } : prev));
+    } catch (e) {
+      setErr((e as Error).message);
+    }
+  }
 
   async function handleSubmit(payload: UpdateMemberInput) {
     if (!id) return;
@@ -64,19 +88,7 @@ const MemberEdit = () => {
         credentials: "include",
         body: JSON.stringify(payload),
       });
-
-      if (!res.ok) {
-        const msg = await res.json().catch(() => ({}));
-        throw new Error(
-          msg.message || `Échec de la mise à jour (HTTP ${res.status})`
-        );
-      }
-
-      // succès → retour à la liste par exemple
-      nav("/community");
-    } catch (e) {
-      alert((e as Error).message);
-    }
+    } catch (e) {}
   }
 
   if (loading)
@@ -101,7 +113,12 @@ const MemberEdit = () => {
   return (
     <section className="layout">
       <h2>Modifier un membre</h2>
-      <MemberEditForm initial={member} onSubmit={handleSubmit} />
+      <MemberEditForm
+        initial={member}
+        isManager={isManager}
+        onAssignManager={handleAssignManager}
+        onSubmit={handleSubmit}
+      />
     </section>
   );
 };

@@ -30,7 +30,7 @@ import { memberSchema } from "./MemberDTO";
 export const memberUpdateSchema = memberSchema
   .omit({ id: true, isManager: true })
   .partial()
-  .strict()
+  // .strict()
   .refine((data) => Object.keys(data).length > 0, {
     message: "Au moins un champ doit être fourni pour la mise à jour",
   });
