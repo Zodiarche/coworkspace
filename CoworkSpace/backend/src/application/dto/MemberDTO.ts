@@ -8,7 +8,7 @@ export const memberSchema = z
     lastname: z.string().min(2).max(100),
     email: z.string().email(),
     photo: z.string().url().nullable().optional(),
-    profession: z.string().max(100).optional(),
+    profession: z.string().max(100).nullable().optional(),
     company: z.string().max(100).nullable().optional(),
     skills: z.array(z.string().max(100)).optional(),
     membershipType: membershipEnum,
