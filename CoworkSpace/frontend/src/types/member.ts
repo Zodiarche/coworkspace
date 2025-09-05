@@ -8,7 +8,7 @@ export interface Member {
   photo: string;
   profession: string;
   company: string;
-  skills: string[];
+  skills: string;
   membershipType: MembershipType;
   isManager: boolean;
 }
