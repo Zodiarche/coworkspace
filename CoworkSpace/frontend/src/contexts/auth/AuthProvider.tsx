@@ -23,8 +23,8 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
         return;
       }
 
-      const me: Member = await res.json();
-      setUser(me);
+      const me = await res.json();
+      setUser(me.member);
     } catch {
       setUser(null);
       setError("Impossible de récupérer la session.");
