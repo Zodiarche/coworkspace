@@ -47,52 +47,68 @@ export default function SearchForm({
   const sizeOptions = [2, 5, 10, 12, 20, 50];
 
   return (
-    <form className="search-form" onSubmit={(e) => e.preventDefault()}>
-      <input
-        type="text"
-        placeholder="Nom (ex: sarah)"
-        value={value.name}
-        onChange={handleInput("name")}
-      />
-      <input
-        type="text"
-        placeholder="Profession (ex: developer)"
-        value={value.profession}
-        onChange={handleInput("profession")}
-      />
-      <select
-        value={value.membershipType ?? ""}
-        onChange={handleInput("membershipType")}
-      >
-        <option value="">Type d’abonnement (tous)</option>
-        <option value="Basic">Basic</option>
-        <option value="Premium">Premium</option>
-        <option value="Enterprise">Enterprise</option>
-      </select>
+    <form onSubmit={(e) => e.preventDefault()}>
+      <label>
+        Nom :
+        <input
+          type="text"
+          placeholder="Nom (ex: sarah)"
+          value={value.name}
+          onChange={handleInput("name")}
+        />
+      </label>
 
-      <select
-        aria-label="Page"
-        value={page}
-        onChange={(e) => onChangePage(Number(e.target.value))}
-      >
-        {Array.from({ length: totalPages }, (_, i) => i + 1).map((p) => (
-          <option key={p} value={p}>
-            Page {p} / {totalPages}
-          </option>
-        ))}
-      </select>
+      <label>
+        Profession :
+        <input
+          type="text"
+          placeholder="Profession (ex: developer)"
+          value={value.profession}
+          onChange={handleInput("profession")}
+        />
+      </label>
+      <label>
+        Type d’abonnement :
+        <select
+          value={value.membershipType ?? ""}
+          onChange={handleInput("membershipType")}
+        >
+          <option value="">Type d’abonnement (tous)</option>
+          <option value="Basic">Basic</option>
+          <option value="Premium">Premium</option>
+          <option value="Enterprise">Enterprise</option>
+        </select>
+      </label>
 
-      <select
-        aria-label="Résultats par page"
-        value={size}
-        onChange={(e) => onChangeSize(Number(e.target.value))}
-      >
-        {sizeOptions.map((s) => (
-          <option key={s} value={s}>
-            {s} / page
-          </option>
-        ))}
-      </select>
+      <label>
+        Page :
+        <select
+          aria-label="Page"
+          value={page}
+          onChange={(e) => onChangePage(Number(e.target.value))}
+        >
+          {Array.from({ length: totalPages }, (_, i) => i + 1).map((p) => (
+            <option key={p} value={p}>
+              Page {p} / {totalPages}
+            </option>
+          ))}
+        </select>
+      </label>
+
+      <label>
+        Résultats par page :
+        <select
+          aria-label="Résultats par page"
+          value={size}
+          onChange={(e) => onChangeSize(Number(e.target.value))}
+        >
+          {sizeOptions.map((s) => (
+            <option key={s} value={s}>
+              {s} / page
+            </option>
+          ))}
+        </select>
+      </label>
     </form>
   );
 }

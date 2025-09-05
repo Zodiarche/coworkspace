@@ -42,7 +42,7 @@ export default function MemberCard({
   };
 
   return (
-    <div className="member-card">
+    <div className="card-container">
       <img
         className="member-photo"
         src={member.photo}
@@ -62,7 +62,7 @@ export default function MemberCard({
 
       {isManager && (
         <div className="member-actions">
-          <button type="button" onClick={handleEdit}>
+          <button type="button" className="edit" onClick={handleEdit}>
             Modifier
           </button>
           <button type="button" className="danger" onClick={handleDelete}>
