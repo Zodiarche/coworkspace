@@ -72,6 +72,8 @@ export class MemberService {
   }
 
   async assignManagerRole(id: string): Promise<Member> {
+    console.log("MemberService.assignManagerRole called");
+    console.log("assignManagerRole called with id:", id);
     return this.repo.update(id, { isManager: true });
   }
 }
