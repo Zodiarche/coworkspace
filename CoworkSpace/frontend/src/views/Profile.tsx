@@ -6,7 +6,7 @@ const Profile = () => {
 
   return (
     <section className="layout">
-      <div className="profile profile-section">
+      <div className="profile profile-section layout">
         <h1>Modifier mon profil</h1>
         <p>Mettez à jour vos informations personnelles et professionnelles</p>
 
