@@ -1,30 +1,8 @@
-import { Member } from "../types/member";
-import { useAuth } from "../contexts/auth";
-import React, { useState, useEffect } from "react";
-
-export type UpdateMemberInput = Omit<Member, "id" | "isManager"> & {
-  password?: string;
-};
+import React from "react";
+import { useProfile } from "../hooks/useProfile";
 
 const Profile = () => {
-  const { user, update } = useAuth();
-
-  const [tempUser, setTempUser] = useState<UpdateMemberInput>();
-
-  // si `user` change dans le contexte, on met à jour le state local
-  useEffect(() => {
-    setTempUser(user!);
-  }, [user]);
-
-  const handleChange = (field: string, value: string) => {
-    setTempUser((prev: any) => ({ ...prev, [field]: value }));
-  };
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    const { id, isManager, ...updatedUser } = tempUser!;
-    update(updatedUser);
-  };
+  const { tempUser, handleChange, handleSubmit } = useProfile();
 
   return (
     <section className="layout">
