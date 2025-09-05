@@ -38,13 +38,17 @@ export class MemberController {
 
   list = async (req: Request, res: Response) => {
     try {
+      console.log("Listing members with query:", req.query);
       const q = listQuerySchema.parse(req.query);
+      console.log("query after parsing:", q);
       const { page = 1, size = 10, name, profession, membershipType } = q;
-
+      console.log("page, size, name, profession, membershipType");
       const data = await this.listUseCase.execute(
         { name, profession, membershipType },
         { page: Number(page), size: Number(size) }
       );
+
+      console.log("data from use case:", data);
 
       const listResponseSchema = z.object({
         items: z.array(memberSchema),
@@ -53,12 +57,16 @@ export class MemberController {
         size: z.number().int().positive(),
       });
 
+      console.log("listResponseSchema:", listResponseSchema);
+
       const dto = listResponseSchema.parse({
         items: data.items,
         total: data.total,
         page,
         size,
       });
+
+      console.log("dto:", dto);
       res.json(dto);
     } catch (e: any) {
       if (e instanceof ZodError) {

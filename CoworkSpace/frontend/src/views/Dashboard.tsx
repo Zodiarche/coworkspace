@@ -33,7 +33,7 @@ export const Dashboard = () => {
 
   return (
     <section className="layout">
-      <h1>Bonjour {user?.firstname}</h1>
+      <h2>Bienvenue sur le tableau de bord !</h2>
       <RandomMemberCard member={randomMember} />
       <button onClick={fetchRandomMember}>Charger un membre aléatoire</button>
     </section>

@@ -3,7 +3,6 @@ import { Login } from "./views/Login";
 import { Community } from "./views/Community";
 import { Dashboard } from "./views/Dashboard";
 import { Events } from "./views/Events";
-import { Settings } from "./views/Settings";
 import Header from "./components/header/Header";
 import RequireAuth from "./routes/RequireAuth";
 import Profile from "./views/Profile";
@@ -29,8 +28,6 @@ function App() {
             <Route path="/community" element={<Community />} />
             <Route path="/dashboard" element={<Dashboard />} />
             <Route path="/profile" element={<Profile />} />
-            <Route path="/events" element={<Events />} />
-            <Route path="/settings" element={<Settings />} />
           </Route>
           <Route element={<RequireAdmin />}>
             <Route path="/members/:id/edit" element={<MemberEdit />} />
