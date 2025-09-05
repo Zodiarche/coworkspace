@@ -29,29 +29,10 @@ export default function Header() {
             >
               Communauté
             </NavLink>
-            <NavLink
-              to="/events"
-              className={({ isActive }) => (isActive ? "active" : "")}
-            >
-              Événements
-            </NavLink>
-            <NavLink
-              to="/settings"
-              className={({ isActive }) => (isActive ? "active" : "")}
-            >
-              Paramètres
-            </NavLink>
 
             {/* Profile */}
             <NavLink to="/profile">Mon profil</NavLink>
-            {user?.isManager && (
-              <NavLink
-                to="/admin"
-                className={({ isActive }) => (isActive ? "active" : "")}
-              >
-                Admin
-              </NavLink>
-            )}
+
             <NavLink
               to="/login"
               className="navbar__profile-link"
@@ -62,15 +43,6 @@ export default function Header() {
           </>
         )}
       </nav>
-
-      {/* Profile */}
-      {user ? (
-        <NavLink to="/profile">Mon profil</NavLink>
-      ) : (
-        <NavLink to="/login" className="navbar__profile-link" onClick={logout}>
-          Se déconnecter
-        </NavLink>
-      )}
     </header>
   );
 }
