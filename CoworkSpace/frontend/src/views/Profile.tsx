@@ -6,7 +6,7 @@ const Profile = () => {
 
   return (
     <section className="layout">
-      <div className="profile">
+      <div className="profile profile-section">
         <h1>Modifier mon profil</h1>
         <p>Mettez à jour vos informations personnelles et professionnelles</p>
 
@@ -96,8 +96,8 @@ const Profile = () => {
           />
         </div> */}
 
-        <div>
-          Sécurité
+        <div className="profile-section">
+          <h3>Sécurité</h3>
           <label>Mot de passe</label>
           <input
             type="password"
@@ -105,9 +105,10 @@ const Profile = () => {
             onChange={(e) => handleChange("password", e.target.value)}
           />
         </div>
-
-        <button onClick={handleSubmit}>Confirmer</button>
       </div>
+      <button className="btn" onClick={handleSubmit}>
+        Confirmer
+      </button>
     </section>
   );
 };
