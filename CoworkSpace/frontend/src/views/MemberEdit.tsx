@@ -1,15 +1,16 @@
 import { useEffect, useState } from "react";
-import { useParams, useNavigate } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import type { Member } from "../types/member";
 import MemberEditForm from "../components/admin/MemberEditForm";
 
-type UpdateMemberInput = Omit<Member, "id" | "isManager">;
+export type UpdateMemberInput = Omit<Member, "id" | "isManager"> & {
+  password?: string;
+};
 
 const API_BASE = "http://localhost:3000";
 
 const MemberEdit = () => {
   const { id } = useParams<{ id: string }>();
-  const nav = useNavigate();
 
   const [member, setMember] = useState<UpdateMemberInput | null>(null);
   const [isManager, setIsManager] = useState(false);
@@ -78,15 +79,36 @@ const MemberEdit = () => {
 
   async function handleSubmit(payload: UpdateMemberInput) {
     if (!id) return;
-
+    const {
+      firstname,
+      lastname,
+      email,
+      password,
+      photo,
+      profession,
+      company,
+      skills,
+      membershipType,
+    } = payload;
+    const data = {
+      firstname,
+      lastname,
+      email,
+      password,
+      photo,
+      profession,
+      company,
+      skills,
+      membershipType,
+    };
     try {
-      const res = await fetch(`${API_BASE}/api/admin/members/${id}`, {
+      await fetch(`${API_BASE}/api/admin/members/${id}`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
         },
         credentials: "include",
-        body: JSON.stringify(payload),
+        body: JSON.stringify(data),
       });
     } catch (e) {}
   }

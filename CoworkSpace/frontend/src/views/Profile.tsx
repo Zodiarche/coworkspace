@@ -2,10 +2,14 @@ import { Member } from "../types/member";
 import { useAuth } from "../contexts/auth";
 import React, { useState, useEffect } from "react";
 
+export type UpdateMemberInput = Omit<Member, "id" | "isManager"> & {
+  password?: string;
+};
+
 const Profile = () => {
   const { user, update } = useAuth();
 
-  const [tempUser, setTempUser] = useState<Partial<Member>>();
+  const [tempUser, setTempUser] = useState<UpdateMemberInput>();
 
   // si `user` change dans le contexte, on met à jour le state local
   useEffect(() => {
@@ -45,22 +49,19 @@ const Profile = () => {
               value={tempUser?.firstname ?? ""}
               onChange={(e) => handleChange("firstname", e.target.value)}
             />
-
             <label>Nom</label>
             <input
               type="text"
               value={tempUser?.lastname ?? ""}
               onChange={(e) => handleChange("lastname", e.target.value)}
             />
-
             <label>Email</label>
             <input
               type="email"
               value={tempUser?.email ?? ""}
               onChange={(e) => handleChange("email", e.target.value)}
             />
-
-            <label>Téléphone</label>
+            {/* <label>Téléphone</label>
             <input
               type="text"
               value={tempUser?.phone ?? ""}
@@ -73,6 +74,13 @@ const Profile = () => {
               value={tempUser?.city ?? ""}
               onChange={(e) => handleChange("city", e.target.value)}
             />
+           <label>Pays</label>
+            <input
+              type="text"
+              value={tempUser?.country ?? ""}
+              onChange={(e) => handleChange("country", e.target.value)}
+            />
+            {/* */}
           </div>
 
           <div className="profile-section">
@@ -100,13 +108,23 @@ const Profile = () => {
           </div>
         </div>
 
-        <div className="profile-section">
+        {/* <div className="profile-section">
           <h3>À propos de moi</h3>
           <label>Biographie</label>
           <textarea
             rows={4}
             value={tempUser?.bio ?? ""}
             onChange={(e) => handleChange("bio", e.target.value)}
+          />
+        </div> */}
+
+        <div>
+          Sécurité
+          <label>Mot de passe</label>
+          <input
+            type="password"
+            value={tempUser?.password ?? ""}
+            onChange={(e) => handleChange("password", e.target.value)}
           />
         </div>
 

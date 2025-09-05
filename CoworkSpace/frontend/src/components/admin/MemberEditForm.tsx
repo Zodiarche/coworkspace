@@ -1,8 +1,9 @@
 import { useState } from "react";
 import type { Member, MembershipType } from "../../types/member";
 
-// Type de mise à jour sans id / isManager
-type UpdateMemberInput = Omit<Member, "id" | "isManager">;
+export type UpdateMemberInput = Omit<Member, "id" | "isManager"> & {
+  password?: string;
+};
 
 interface MemberEditFormProps {
   initial: UpdateMemberInput;
@@ -121,6 +122,16 @@ export default function MemberEditForm({
             </option>
           ))}
         </select>
+      </label>
+
+      <label>
+        Mot de passe (laisser vide pour ne pas changer)
+        <input
+          type="password"
+          value={form.password || ""}
+          onChange={(e) => handleChange("password", e.target.value)}
+          placeholder="Nouveau mot de passe"
+        />
       </label>
 
       {isManager ? (
