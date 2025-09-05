@@ -6,12 +6,16 @@ type UpdateMemberInput = Omit<Member, "id" | "isManager">;
 
 interface MemberEditFormProps {
   initial: UpdateMemberInput;
+  isManager: boolean;
   onSubmit: (data: UpdateMemberInput) => void | Promise<void>;
+  onAssignManager: () => void;
 }
 
 export default function MemberEditForm({
   initial,
+  isManager,
   onSubmit,
+  onAssignManager,
 }: MemberEditFormProps) {
   const [form, setForm] = useState<UpdateMemberInput>(initial);
 
@@ -119,6 +123,13 @@ export default function MemberEditForm({
         </select>
       </label>
 
+      {isManager ? (
+        "Est manager"
+      ) : (
+        <button type="button" onClick={onAssignManager}>
+          Rendre le membre manager
+        </button>
+      )}
       <button type="submit">Enregistrer</button>
     </form>
   );

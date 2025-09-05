@@ -92,7 +92,8 @@ export class MemberController {
       }
       res
         .status(400)
-        .json({ error: e?.message || "Echec de la mise à jour du profil" });
+        // .json({ error: e?.message || "Echec de la mise à jour du profil" });
+        .json({ error: e?.message });
     }
   };
 }
