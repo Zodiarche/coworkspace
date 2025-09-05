@@ -13,8 +13,6 @@ export default function LoginForm() {
 
   return (
     <form className="login-form" onSubmit={handleSubmit}>
-      <h2>Connexion</h2>
-
       <label>
         Email
         <input

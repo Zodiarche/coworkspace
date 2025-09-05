@@ -8,12 +8,14 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
+  const BASE_API_URL = import.meta.env.VITE_API_URL || "http://localhost:3000";
+
   async function getMe() {
     setLoading(true);
     setError(null);
     try {
       setError(null);
-      const res = await fetch("http://localhost:3000/api/auth/login/verify", {
+      const res = await fetch(`${BASE_API_URL}/auth/login/verify`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         credentials: "include",
@@ -37,7 +39,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     setLoading(true);
     setError(null);
     try {
-      const res = await fetch("http://localhost:3000/api/auth/login", {
+      const res = await fetch(`${BASE_API_URL}/auth/login`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         credentials: "include",
@@ -64,7 +66,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     setError(null);
     try {
       if (token) {
-        await fetch("http://localhost:3000/api/auth/logout", {
+        await fetch(`${BASE_API_URL}/auth/logout`, {
           method: "POST",
           credentials: "include",
         });
@@ -80,7 +82,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     setLoading(true);
     setError(null);
     try {
-      const res = await fetch("http://localhost:3000/api/members/me", {
+      const res = await fetch(`${BASE_API_URL}/members/me`, {
         method: "PATCH",
         headers: {
           "Content-Type": "application/json",
