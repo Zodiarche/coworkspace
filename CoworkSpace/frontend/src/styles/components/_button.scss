@@ -12,4 +12,15 @@ button {
   &:hover {
     background: #5a3fe0;
   }
+
+  &.danger {
+    border-color: #e5b3b3;
+    background: #ffecec;
+    color: #b80000;
+  }
+
+  &.edit {
+    background: rgb(242, 229, 255);
+    color: #6a4dff;
+  }
 }
