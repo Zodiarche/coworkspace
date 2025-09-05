@@ -42,5 +42,14 @@ export const memberUpdateSchema = z
 //     message: "Au moins un champ doit être fourni pour la mise à jour",
 //   });
 
+
+export const memberUpdateSchema = memberSchema
+  .omit({ id: true, isManager: true })
+  .partial()
+  // .strict()
+  .refine((data) => Object.keys(data).length > 0, {
+    message: "Au moins un champ doit être fourni pour la mise à jour",
+  });
+
 export type UpdateMemberInput = z.input<typeof memberUpdateSchema>;
 export type UpdateMemberDTO = z.output<typeof memberUpdateSchema>;
